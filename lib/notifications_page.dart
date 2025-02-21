@@ -44,7 +44,7 @@ class NotificationsPage extends StatelessWidget {
 
             const SizedBox(height: 16),
             _buildNotificationItem(
-              "Jhuniel Galang and Christian Caparra liked your post",
+              "Jhuniel Galang and Samuel Mianda liked your post",
               "5d",
               "images/Jhuniel.jpg",
             ),
