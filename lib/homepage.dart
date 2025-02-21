@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:members_lists/chat.dart';
-import 'package:members_lists/main.dart'; // Import your main.dart file where MyApp is defined
+import 'package:members_lists/main.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -28,7 +28,7 @@ class _HomepageState extends State<Homepage> {
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.heart, size: 25, color: CupertinoColors.white),
               onPressed: () {
-                // Handle heart icon press
+
               },
             ),
             CupertinoButton(
@@ -45,7 +45,7 @@ class _HomepageState extends State<Homepage> {
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.power, size: 25, color: CupertinoColors.white),
               onPressed: () {
-                _showLogoutDialog(context); // Show logout confirmation dialog
+                _showLogoutDialog(context);
               },
             ),
           ],
@@ -54,7 +54,7 @@ class _HomepageState extends State<Homepage> {
       child: SafeArea(
         child: Column(
           children: [
-            // Stories Section
+            // Stories
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: SizedBox(
