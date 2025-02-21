@@ -63,6 +63,8 @@ class _HomepageState extends State<Homepage> {
                     _buildStory("John Lloyd", "images/JL.jpg"),
                     _buildStory("Michael", "images/mike.jpg"),
                     _buildStory("Samuel", "images/mike.jpg"),
+                    //
+                    //
 
                   ],
                 ),
@@ -72,11 +74,12 @@ class _HomepageState extends State<Homepage> {
             Expanded(
               child: ListView(
                 children: [
-                  _buildPost("Christian Caparra", "images/ChristianCaparra.jpg", "images/ChristianCaparra.jpg", "9,234 likes", "Enjoying the day!"),
-                  _buildPost("John Lloyd Guevarra", "images/JL.jpg", "images/JL.jpg", "2,345 likes", "Beautiful sunset!"),
-                  _buildPost("Michael De Ramos", "images/mike.jpg", "images/mike.jpg", "3,456 likes", "Weekend vibes!"),
-                  _buildPost("Jhuniel Galang", "images/Jhuniel.jpg", "images/Jhuniel.jpg", "4,567 likes", "Good times!"),
-                  _buildPost("Samuel Miranda", "images/Jhuniel.jpg", "images/Jhuniel.jpg", "4,827 likes", "Good Dayc!"),
+                  _buildPost("Christian Caparra", "images/ChristianCaparra.jpg", "images/ChristianCaparra.jpg", "9,234 likes", "stress napo"),
+                  _buildPost("John Lloyd Guevarra", "images/JL.jpg", "images/JL.jpg", "2,345 likes", "0.5 muna bago 5.0"),
+                  _buildPost("John Lloyd Guevarra", "images/JL.jpg", "images/JL.jpg", "9,345 likes", "with mga idols 🔥"),
+                  _buildPost("Michael De Ramos", "images/mike.jpg", "images/mike.jpg", "3,456 likes", "kape pa!"),
+                  _buildPost("Jhuniel Galang", "images/Jhuniel.jpg", "images/Jhuniel.jpg", "4,567 likes", "wag na ayaw kona!"),
+                  _buildPost("Samuel Miranda", "images/Jhuniel.jpg", "images/Jhuniel.jpg", "4,827 likes", "hello!"),
                 ],
               ),
             ),
@@ -165,6 +168,7 @@ class _HomepageState extends State<Homepage> {
         ),
         SizedBox(
           height: 400,
+          width: double.infinity,
           child: Image.asset(
             postImage,
             fit: BoxFit.cover,
@@ -219,7 +223,7 @@ class _HomepageState extends State<Homepage> {
       "Samuel": "images/mike.jpg",
       "Your Story": "images/gfnisir.jpg",
     };
-
+//
     final storyImage = storyImages[name] ?? "images/default_story.jpg";
 
     showCupertinoDialog(

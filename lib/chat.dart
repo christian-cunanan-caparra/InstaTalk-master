@@ -383,6 +383,19 @@ class _ChatState extends State<Chat> {
                                 ),
 
 
+                                if (participant["name"] == "Jhuniel Galang")
+                                  const Text(
+                                    "Sige po sir mwamwaa",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: CupertinoColors.systemGrey,
+                                    ),
+                                  ),
+
+                                // anotherr  iff
+
+
+
 
                               ],
                             ),
