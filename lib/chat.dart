@@ -46,6 +46,16 @@ class _ChatState extends State<Chat> {
           "RonnieSngl",
           style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.white),
         ),
+        trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
+          child: const Icon(
+            CupertinoIcons.info,
+            color: CupertinoColors.white,
+          ),
+          onPressed: () {
+            _showMembersDialog(context);
+          },
+        ),
       ),
       child: SafeArea(
         child: Column(
@@ -121,7 +131,6 @@ class _ChatState extends State<Chat> {
                     ),
                   ),
 
-
                   GestureDetector(
                     onTap: () => _showStoryDialog(context, "Christian", "images/ChristianCaparra.jpg"),
                     child: Padding(
@@ -151,10 +160,6 @@ class _ChatState extends State<Chat> {
                       ),
                     ),
                   ),
-
-
-
-
 
                   GestureDetector(
                     onTap: () => _showStoryDialog(context, "Jhuniel", "images/Jhuniel.jpg"),
@@ -186,11 +191,6 @@ class _ChatState extends State<Chat> {
                     ),
                   ),
 
-
-
-
-
-
                   GestureDetector(
                     onTap: () => _showStoryDialog(context, "John Lloyd", "images/JL.jpg"),
                     child: Padding(
@@ -220,12 +220,6 @@ class _ChatState extends State<Chat> {
                       ),
                     ),
                   ),
-
-
-
-
-
-
 
                   GestureDetector(
                     onTap: () => _showStoryDialog(context, "Michael", "images/mike.jpg"),
@@ -257,13 +251,6 @@ class _ChatState extends State<Chat> {
                     ),
                   ),
 
-
-
-
-
-
-
-
                   GestureDetector(
                     onTap: () => _showStoryDialog(context, "Samuel Miranda", "images/JL.jpg"),
                     child: Padding(
@@ -293,11 +280,6 @@ class _ChatState extends State<Chat> {
                       ),
                     ),
                   ),
-
-
-
-
-
                 ],
               ),
             ),
@@ -319,23 +301,13 @@ class _ChatState extends State<Chat> {
                           context,
                           CupertinoPageRoute(builder: (context) => const ChristianChatPage()),
                         );
-
-
-                    } else if (participant["name"] == "Jhuniel Galang") {
+                      } else if (participant["name"] == "Jhuniel Galang") {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
                               builder: (context) => const JhunielChatPage()),
                         );
-
-                        //dito nyo add sainyo gamit kayo else if
-
-
                       }
-
-
-
-
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -355,11 +327,6 @@ class _ChatState extends State<Chat> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
-
-                                //dito start nung chat recent
-
-
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -381,8 +348,6 @@ class _ChatState extends State<Chat> {
                                       ),
                                   ],
                                 ),
-
-
                                 if (participant["name"] == "Jhuniel Galang")
                                   const Text(
                                     "Sige po sir mwamwaa",
@@ -391,12 +356,6 @@ class _ChatState extends State<Chat> {
                                       color: CupertinoColors.systemGrey,
                                     ),
                                   ),
-
-                                // anotherr  iff
-
-
-
-
                               ],
                             ),
                           ),
@@ -404,9 +363,6 @@ class _ChatState extends State<Chat> {
                       ),
                     ),
                   );
-
-
-
                 },
               ),
             ),
@@ -451,13 +407,56 @@ class _ChatState extends State<Chat> {
                     ),
                   ),
                 ),
-
-
-
-
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  // Show Members Dialog
+  void _showMembersDialog(BuildContext context) {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: const Text("Members"),
+          content: Column(
+            children: participants.map((participant) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  children: [
+                    ClipOval(
+                      child: Image.asset(
+                        participant["image"]!,
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      participant["name"]!,
+                      style: const TextStyle(
+                        color: CupertinoColors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         );
       },
     );
@@ -471,8 +470,4 @@ List<Map<String, String>> participants = [
   {"name": "John Lloyd Guevarra", "image": "images/JL.jpg"},
   {"name": "Michael De Ramos", "image": "images/mike.jpg"},
   {"name": "Samuel Miranda", "image": "images/JL.jpg"},
-
-
-
-
 ];

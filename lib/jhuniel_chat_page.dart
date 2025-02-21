@@ -104,9 +104,7 @@ class JhunielChatPage extends StatelessWidget {
   Widget _buildMessageInput() {
     return Container(
       padding: const EdgeInsets.all(12),
-      decoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: CupertinoColors.systemGrey)),
-      ),
+
       child: Row(
         children: [
           Expanded(

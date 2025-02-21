@@ -27,14 +27,15 @@ class _HomepageState extends State<Homepage> {
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.heart, size: 25, color: CupertinoColors.white),
               onPressed: () {
-                // Handle heart button press
+
               },
             ),
             CupertinoButton(
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.chat_bubble_2, size: 25, color: CupertinoColors.white),
               onPressed: () {
-                // Navigate to messages
+
+
                 Navigator.push(
                   context,
                   CupertinoPageRoute(builder: (context) => Chat()),
@@ -48,9 +49,9 @@ class _HomepageState extends State<Homepage> {
       child: SafeArea(
         child: Column(
           children: [
-            // Stories Section
+            // Stories
             Padding(
-              padding: const EdgeInsets.only(top: 20.0), // Adjust the value as needed
+              padding: const EdgeInsets.only(top: 20.0),
               child: SizedBox(
                 height: 100,
                 child: ListView(
@@ -71,18 +72,62 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             // Post Section
+
             Expanded(
               child: ListView(
                 children: [
-                  _buildPost("Christian Caparra", "images/ChristianCaparra.jpg", "images/ChristianCaparra.jpg", "9,234 likes", "stress napo"),
-                  _buildPost("John Lloyd Guevarra", "images/JL.jpg", "images/JL.jpg", "2,345 likes", "0.5 muna bago 5.0"),
-                  _buildPost("John Lloyd Guevarra", "images/JL.jpg", "images/JL.jpg", "9,345 likes", "with mga idols 🔥"),
-                  _buildPost("Michael De Ramos", "images/mike.jpg", "images/mike.jpg", "3,456 likes", "kape pa!"),
-                  _buildPost("Jhuniel Galang", "images/Jhuniel.jpg", "images/Jhuniel.jpg", "4,567 likes", "wag na ayaw kona!"),
-                  _buildPost("Samuel Miranda", "images/Jhuniel.jpg", "images/Jhuniel.jpg", "4,827 likes", "hello!"),
+                  // Add margin
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: _buildPost(
+                      "Christian Caparra",
+                      "images/ChristianCaparra.jpg",
+                      "images/1.jpg",
+                      "20,234 likes",
+                      "Hi Hehehe",
+                    ),
+                  ),
+                  _buildPost(
+                    "John Lloyd Guevarra",
+                    "images/JL.jpg",
+                    "images/JL.jpg",
+                    "2,345 likes",
+                    "0.5 muna bago 5.0",
+                  ),
+                  _buildPost(
+                    "John Lloyd Guevarra",
+                    "images/JL.jpg",
+                    "images/JL.jpg",
+                    "9,345 likes",
+                    "with mga idols 🔥",
+                  ),
+                  _buildPost(
+                    "Michael De Ramos",
+                    "images/mike.jpg",
+                    "images/mike.jpg",
+                    "3,456 likes",
+                    "kape pa!",
+                  ),
+                  _buildPost(
+                    "Jhuniel Galang",
+                    "images/Jhuniel.jpg",
+                    "images/Jhuniel.jpg",
+                    "4,567 likes",
+                    "wag na ayaw kona!",
+                  ),
+                  _buildPost(
+                    "Samuel Miranda",
+                    "images/Jhuniel.jpg",
+                    "images/Jhuniel.jpg",
+                    "4,827 likes",
+                    "hello!",
+                  ),
                 ],
               ),
             ),
+
+
+
           ],
         ),
       ),
