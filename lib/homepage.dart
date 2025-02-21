@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:members_lists/chat.dart';
 import 'package:members_lists/main.dart';
+import 'package:members_lists/notifications_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -28,7 +29,10 @@ class _HomepageState extends State<Homepage> {
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.heart, size: 25, color: CupertinoColors.white),
               onPressed: () {
-
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(builder: (context) => const NotificationsPage()),
+                );
               },
             ),
             CupertinoButton(

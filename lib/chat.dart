@@ -350,7 +350,7 @@ class _ChatState extends State<Chat> {
                                 ),
                                 if (participant["name"] == "Jhuniel Galang")
                                   const Text(
-                                    "Sige po sir mwamwaa",
+                                    "Thanksss sir mwa mwa chup chup!",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: CupertinoColors.systemGrey,
