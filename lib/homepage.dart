@@ -123,6 +123,13 @@ class _HomepageState extends State<Homepage> {
                     "Got Phoebe and her sig weap",
                   ),
                   _buildPost(
+                    "Jhuniel Galang",
+                    "images/Jhuniel.jpg",
+                    "images/random3.jpg",
+                    "4,567 likes",
+                    "Sexy ni caparra ugh~",
+                  ),
+                  _buildPost(
                     "Samuel Miranda",
                     "images/Jhuniel.jpg",
                     "images/Jhuniel.jpg",
