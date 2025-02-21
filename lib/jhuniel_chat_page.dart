@@ -55,7 +55,7 @@ class JhunielChatPage extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(50),
             child: Image.asset(
-              'images/Jhuniel.jpg',
+              'images/dpjhuniel.jpg',
               width: 80,
               height: 80,
               fit: BoxFit.cover,
@@ -96,7 +96,7 @@ class JhunielChatPage extends StatelessWidget {
         final message = messages[messages.length - 1 - index]; // Reverse list order
         return message["type"] == "sent"
             ? _buildSentMessage(message["text"]!, context)
-            : _buildReceivedMessage(message["text"]!, "images/Jhuniel.jpg", context);
+            : _buildReceivedMessage(message["text"]!, "images/dpjhuniel.jpg", context);
       },
     );
   }
