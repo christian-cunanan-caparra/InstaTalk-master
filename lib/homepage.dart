@@ -276,7 +276,7 @@ class _HomepageState extends State<Homepage> {
   void _showStoryDialog(BuildContext context, String name) {
     final storyImages = {
       "Christian": "images/ChristianCaparra.jpg",
-      "Jhuniel": "images/Jhuniel.jpg",
+      "Jhuniel": "images/random4.jpg",
       "John Lloyd": "images/JL.jpg",
       "Michael": "images/mike.jpg",
       "Samuel": "images/mike.jpg",
