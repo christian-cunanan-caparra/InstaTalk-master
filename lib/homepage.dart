@@ -60,7 +60,7 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     _buildStory("Your Story", "images/gfnisir.jpg", true),
                     _buildStory("Christian", "images/ChristianCaparra.jpg"),
-                    _buildStory("Jhuniel", "images/Jhuniel.jpg"),
+                    _buildStory("Jhuniel", "images/dpjhuniel.jpg"),
                     _buildStory("John Lloyd", "images/JL.jpg"),
                     _buildStory("Michael", "images/mike.jpg"),
                     _buildStory("Samuel", "images/mike.jpg"),
