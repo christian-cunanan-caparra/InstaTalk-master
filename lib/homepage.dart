@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:members_lists/chat.dart';
+import 'package:members_lists/main.dart'; // Import your main.dart file where MyApp is defined
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -27,29 +28,33 @@ class _HomepageState extends State<Homepage> {
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.heart, size: 25, color: CupertinoColors.white),
               onPressed: () {
-
+                // Handle heart icon press
               },
             ),
             CupertinoButton(
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.chat_bubble_2, size: 25, color: CupertinoColors.white),
               onPressed: () {
-
-
                 Navigator.push(
                   context,
                   CupertinoPageRoute(builder: (context) => Chat()),
                 );
               },
             ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.power, size: 25, color: CupertinoColors.white),
+              onPressed: () {
+                _showLogoutDialog(context); // Show logout confirmation dialog
+              },
+            ),
           ],
         ),
       ),
-
       child: SafeArea(
         child: Column(
           children: [
-            // Stories
+            // Stories Section
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: SizedBox(
@@ -64,19 +69,14 @@ class _HomepageState extends State<Homepage> {
                     _buildStory("John Lloyd", "images/JL.jpg"),
                     _buildStory("Michael", "images/mike.jpg"),
                     _buildStory("Samuel", "images/mike.jpg"),
-                    //
-                    //
-
                   ],
                 ),
               ),
             ),
             // Post Section
-
             Expanded(
               child: ListView(
                 children: [
-                  // Add margin
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: _buildPost(
@@ -139,15 +139,13 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-
-
-
           ],
         ),
       ),
     );
   }
 
+  // Build Story Widget
   Widget _buildStory(String name, String imagePath, [bool isYourStory = false]) {
     return GestureDetector(
       onTap: () => _showStoryDialog(context, name),
@@ -201,6 +199,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
+  // Build Post Widget
   Widget _buildPost(String username, String profileImage, String postImage, String likes, String caption) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -273,6 +272,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
+  // Show Story Dialog
   void _showStoryDialog(BuildContext context, String name) {
     final storyImages = {
       "Christian": "images/ChristianCaparra.jpg",
@@ -282,7 +282,7 @@ class _HomepageState extends State<Homepage> {
       "Samuel": "images/mike.jpg",
       "Your Story": "images/gfnisir.jpg",
     };
-//
+
     final storyImage = storyImages[name] ?? "images/default_story.jpg";
 
     showCupertinoDialog(
@@ -321,6 +321,37 @@ class _HomepageState extends State<Homepage> {
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  // Show Logout Dialog
+  void _showLogoutDialog(BuildContext context) {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: const Text("Log Out"),
+          content: const Text("Are you sure you want to sign out?"),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text("Cancel"),
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+              },
+            ),
+            CupertinoDialogAction(
+              child: const Text("Yes", style: TextStyle(color: CupertinoColors.destructiveRed),),
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+                Navigator.pushReplacement(
+                  context,
+                  CupertinoPageRoute(builder: (context) => MyApp()), // Navigate to MyApp
+                );
+              },
+            ),
+          ],
         );
       },
     );
