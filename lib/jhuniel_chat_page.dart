@@ -6,12 +6,12 @@ class JhunielChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> messages = [
-      {"text": "Good morning sir, ask lang po", "type": "received"},
-      {"text": "Ano yun?", "type": "sent"},
-      {"text": "San po pwede bumili ng DDR4 RAM?", "type": "received"},
-      {"text": "Itech", "type": "sent"},
-      {"text": "Cyberzone", "type": "sent"},
-      {"text": "Sige po sir mwamwaa", "type": "received"},
+      {"text": "Good morning sir, Penge food", "type": "received"},
+      {"text": "Pakiss muna", "type": "sent"},
+      {"text": "mwah!", "type": "received"},
+      {"text": "Bukas may mcdo ka saken", "type": "sent"},
+      {"text": "tsaka jollibee", "type": "sent"},
+      {"text": "Thanksss sir mwa mwa chup chup!", "type": "received"},
     ];
 
     return CupertinoPageScaffold(
