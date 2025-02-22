@@ -277,7 +277,7 @@ class _HomepageState extends State<Homepage> {
       "Jhuniel": "images/random4.jpg",
       "John Lloyd": "images/JL.jpg",
       "Michael": "images/mike.jpg",
-      "Samuel": "images/mike.jpg",
+      "Samuel": "images/sam.jpg",
       "Your Story": "images/gfnisir.jpg",
     };
 
