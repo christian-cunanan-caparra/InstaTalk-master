@@ -379,6 +379,14 @@ class _ChatState extends State<Chat> {
                                       color: CupertinoColors.systemGrey,
                                     ),
                                   ),
+                                if (participant["name"] == "John Lloyd Guevarra")
+                                  const Text(
+                                    "Ok sir HAHAHA, thank you po!",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: CupertinoColors.systemGrey,
+                                    ),
+                                  ),
 
 
 
@@ -495,7 +503,7 @@ class _ChatState extends State<Chat> {
 List<Map<String, String>> participants = [
   {"name": "Christian Caparra", "image": "images/ChristianCaparra.jpg"},
   {"name": "Jhuniel Galang", "image": "images/dpjhuniel.jpg"},
-  {"name": "John Lloyd Guevarra", "image": "images/JL.jpg"},
+  {"name": "John Lloyd Guevarra", "image": "images/JL1.jpg"},
   {"name": "Michael De Ramos", "image": "images/mike.jpg"},
   {"name": "Samuel Miranda", "image": "images/sam.jpg"},
 ];

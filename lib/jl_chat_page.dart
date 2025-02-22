@@ -180,7 +180,7 @@ class JlChatPage extends StatelessWidget {
                 style: const TextStyle(color: CupertinoColors.black),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
