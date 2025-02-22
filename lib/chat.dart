@@ -307,6 +307,12 @@ class _ChatState extends State<Chat> {
                           CupertinoPageRoute(
                               builder: (context) => const JhunielChatPage()),
                         );
+                      }else if (participant["name"] == "Michael De Ramos") {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const JhunielChatPage()),
+                        );
                       }
                     },
                     child: Padding(
@@ -349,6 +355,14 @@ class _ChatState extends State<Chat> {
                                   ],
                                 ),
                                 if (participant["name"] == "Jhuniel Galang")
+                                  const Text(
+                                    "Thanksss sir mwa mwa chup chup!",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: CupertinoColors.systemGrey,
+                                    ),
+                                  ),
+                                if (participant["name"] == "Michael De Ramos")
                                   const Text(
                                     "Thanksss sir mwa mwa chup chup!",
                                     style: TextStyle(
