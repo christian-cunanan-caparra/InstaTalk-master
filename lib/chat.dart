@@ -371,6 +371,11 @@ class _ChatState extends State<Chat> {
                                       color: CupertinoColors.systemGrey,
                                     ),
                                   ),
+
+
+
+
+
                               ],
                             ),
                           ),
