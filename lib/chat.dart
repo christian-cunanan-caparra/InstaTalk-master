@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:members_lists/mike_chat_page.dart';
 
 import 'christian_chat_page.dart';
 import 'jhuniel_chat_page.dart';
@@ -311,7 +312,7 @@ class _ChatState extends State<Chat> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                              builder: (context) => const JhunielChatPage()),
+                              builder: (context) => const MykeChatPage()),
                         );
                       }
                     },
@@ -364,7 +365,7 @@ class _ChatState extends State<Chat> {
                                   ),
                                 if (participant["name"] == "Michael De Ramos")
                                   const Text(
-                                    "Thanksss sir mwa mwa chup chup!",
+                                    "Thanksss sir",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: CupertinoColors.systemGrey,

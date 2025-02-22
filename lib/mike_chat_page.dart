@@ -7,11 +7,11 @@ class MykeChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map<String, String>> messages = [
       {"text": "Good morning sir, San po ung Room?", "type": "received"},
-      {"text": "Pakiss muna", "type": "sent"},
-      {"text": "mwah!", "type": "received"},
-      {"text": "Bukas may mcdo ka saken", "type": "sent"},
-      {"text": "tsaka jollibee", "type": "sent"},
-      {"text": "Thanksss sir mwa mwa chup chup!", "type": "received"},
+      {"text": "Sa Drawing Room tayo..", "type": "sent"},
+      {"text": "Anong oras po?", "type": "received"},
+      {"text": "1 pm. Kain muna kayo.", "type": "sent"},
+      {"text": "Checking tayo ng Activity mamaya.", "type": "sent"},
+      {"text": "Thanksss sir!", "type": "received"},
     ];
 
     return CupertinoPageScaffold(
