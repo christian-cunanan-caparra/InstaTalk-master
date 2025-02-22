@@ -253,7 +253,7 @@ class _ChatState extends State<Chat> {
                       ),
                     ),
                   ),
-
+//sas
                   GestureDetector(
                     onTap: () => _showStoryDialog(context, "Samuel", "images/sam.jpg"),
                     child: Padding(
