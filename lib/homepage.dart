@@ -72,7 +72,7 @@ class _HomepageState extends State<Homepage> {
                     _buildStory("Jhuniel", "images/dpjhuniel.jpg"),
                     _buildStory("John Lloyd", "images/JL.jpg"),
                     _buildStory("Michael", "images/mike.jpg"),
-                    _buildStory("Samuel", "images/mike.jpg"),
+                    _buildStory("Samuel", "images/sam.jpg"),
                   ],
                 ),
               ),
@@ -129,8 +129,8 @@ class _HomepageState extends State<Homepage> {
 
                   _buildPost(
                     "Samuel Miranda",
-                    "images/Jhuniel.jpg",
-                    "images/Jhuniel.jpg",
+                    "images/sam.jpg",
+                    "images/sam.jpg",
                     "4,827 likes",
                     "hello!",
                   ),
@@ -277,7 +277,7 @@ class _HomepageState extends State<Homepage> {
       "Jhuniel": "images/random4.jpg",
       "John Lloyd": "images/JL.jpg",
       "Michael": "images/mike.jpg",
-      "Samuel": "images/mike.jpg",
+      "Samuel": "images/sam.jpg",
       "Your Story": "images/gfnisir.jpg",
     };
 

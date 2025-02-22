@@ -29,6 +29,12 @@ class information_page extends StatelessWidget {
       "image": "images/mike.jpg",
       "time": "12:40 PM"
     },
+    {
+      "name": "Samuel Miranda",
+      "message": "Address: San Joaquin Sta Ana, Pampanga\nPhone: +639068957073\nsamuelmirandag04@gmail.com",
+      "image": "images/sam.jpg",
+      "time": "12:55 PM"
+    },
   ];
 
   @override

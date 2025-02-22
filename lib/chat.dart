@@ -252,7 +252,7 @@ class _ChatState extends State<Chat> {
                   ),
 
                   GestureDetector(
-                    onTap: () => _showStoryDialog(context, "Samuel Miranda", "images/JL.jpg"),
+                    onTap: () => _showStoryDialog(context, "Samuel", "images/sam.jpg"),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Column(
@@ -264,7 +264,7 @@ class _ChatState extends State<Chat> {
                             ),
                             child: ClipOval(
                               child: Image.asset(
-                                "images/JL.jpg",
+                                "images/sam.jpg",
                                 height: 75,
                                 width: 75,
                                 fit: BoxFit.cover,
@@ -273,7 +273,7 @@ class _ChatState extends State<Chat> {
                           ),
                           const SizedBox(height: 5),
                           const Text(
-                            "Samuel Miranda",
+                            "Samuel",
                             style: TextStyle(fontSize: 12, color: CupertinoColors.white),
                           ),
                         ],
@@ -469,5 +469,5 @@ List<Map<String, String>> participants = [
   {"name": "Jhuniel Galang", "image": "images/dpjhuniel.jpg"},
   {"name": "John Lloyd Guevarra", "image": "images/JL.jpg"},
   {"name": "Michael De Ramos", "image": "images/mike.jpg"},
-  {"name": "Samuel Miranda", "image": "images/JL.jpg"},
+  {"name": "Samuel Miranda", "image": "images/sam.jpg"},
 ];
