@@ -11,6 +11,15 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  // List of members
+  final List<Map<String, String>> members = [
+    {"name": "Christian", "image": "images/ChristianCaparra.jpg"},
+    {"name": "Jhuniel", "image": "images/dpjhuniel.jpg"},
+    {"name": "John Lloyd", "image": "images/JL1.jpg"},
+    {"name": "Michael", "image": "images/mike.jpg"},
+    {"name": "Samuel", "image": "images/sam.jpg"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -19,7 +28,7 @@ class _HomepageState extends State<Homepage> {
         backgroundColor: CupertinoColors.black,
         border: null,
         leading: Padding(
-          padding: const EdgeInsets.only(top: 8.0), // Adjust the top padding as needed
+          padding: const EdgeInsets.only(top: 8.0),
           child: const Text(
             "InstaTalk",
             style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.white),
@@ -40,7 +49,7 @@ class _HomepageState extends State<Homepage> {
             ),
             CupertinoButton(
               padding: EdgeInsets.zero,
-              child: const Icon(CupertinoIcons.chat_bubble_2, size: 25, color: CupertinoColors.white),
+              child: const Icon(CupertinoIcons.paperplane, size: 25, color: CupertinoColors.white),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -48,11 +57,12 @@ class _HomepageState extends State<Homepage> {
                 );
               },
             ),
+            // Dropdown Button
             CupertinoButton(
               padding: EdgeInsets.zero,
-              child: const Icon(CupertinoIcons.power, size: 25, color: CupertinoColors.white),
+              child: const Icon(CupertinoIcons.ellipsis_vertical, size: 25, color: CupertinoColors.white),
               onPressed: () {
-                _showLogoutDialog(context);
+                _showMembersDropdown(context);
               },
             ),
           ],
@@ -129,7 +139,6 @@ class _HomepageState extends State<Homepage> {
                     "4,567 likes",
                     "Got Phoebe and her sig weap",
                   ),
-
                   _buildPost(
                     "Samuel Miranda",
                     "images/sam.jpg",
@@ -288,6 +297,7 @@ class _HomepageState extends State<Homepage> {
 
     showCupertinoDialog(
       context: context,
+      barrierDismissible: false, // Prevents closing on tap outside
       builder: (context) {
         return CupertinoPageScaffold(
           backgroundColor: CupertinoColors.black,
@@ -322,6 +332,95 @@ class _HomepageState extends State<Homepage> {
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  // Show Members Dropdown
+  void _showMembersDropdown(BuildContext context) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoActionSheet(
+          title: const Text('Members'),
+          message: const Text('Select a member to view details'),
+          actions: [
+            ...members.map((member) {
+              return CupertinoActionSheetAction(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _showMemberDetails(context, member);
+                },
+                child: Row(
+                  children: [
+                    ClipOval(
+                      child: Image.asset(
+                        member["image"]!,
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      member["name"]!,
+                      style: const TextStyle(color: CupertinoColors.white),
+                    ),
+                  ],
+                ),
+              );
+            }), // <-- Removed .toList()
+            CupertinoActionSheetAction(
+              onPressed: () {
+                Navigator.pop(context);
+                _showLogoutDialog(context);
+              },
+              child: const Text(
+                'Log Out',
+                style: TextStyle(color: CupertinoColors.destructiveRed),
+              ),
+            ),
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Cancel', style: TextStyle(color: CupertinoColors.white)),
+          ),
+        );
+      },
+    );
+  }
+
+  // Show Member Details (Non-clickable)
+  void _showMemberDetails(BuildContext context, Map<String, String> member) {
+    showCupertinoDialog(
+      context: context,
+      barrierDismissible: false, // Prevents closing on tap outside
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: Text(member["name"]!),
+          content: Column(
+            children: [
+              Image.asset(
+                member["image"]!,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(height: 10),
+              Text("This is ${member["name"]}'s profile."),
+            ],
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text("Close"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         );
       },
     );
