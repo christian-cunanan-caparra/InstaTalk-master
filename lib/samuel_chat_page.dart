@@ -6,7 +6,7 @@ class SamuelChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> messages = [
-      {"text": "Good afternoon sir, can i have food", "type": "received"},
+      {"text": "Good afternoon sir, can i have that food", "type": "received"},
       {"text": "ok take this food", "type": "sent"},
       {"text": "thank sir", "type": "received"},
       {"text": "masarap yan", "type": "sent"},
