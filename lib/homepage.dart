@@ -111,7 +111,7 @@ class _HomepageState extends State<Homepage> {
                   _buildPost(
                     "Michael De Ramos",
                     "images/mike.jpg",
-                    "images/mike.jpg",
+                    "images/kape.jpg",
                     "3,456 likes",
                     "kape pa!",
                   ),
@@ -279,7 +279,7 @@ class _HomepageState extends State<Homepage> {
       "Christian": "images/ChristianCaparra.jpg",
       "Jhuniel": "images/random4.jpg",
       "John Lloyd": "images/JL.jpg",
-      "Michael": "images/mike.jpg",
+      "Michael": "images/samgy.jpg",
       "Samuel": "images/sam.jpg",
       "Your Story": "images/gfnisir.jpg",
     };
