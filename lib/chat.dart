@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:members_lists/mike_chat_page.dart';
+import 'jl_chat_page.dart';
 
 import 'christian_chat_page.dart';
 import 'jhuniel_chat_page.dart';
@@ -205,7 +206,7 @@ class _ChatState extends State<Chat> {
                             ),
                             child: ClipOval(
                               child: Image.asset(
-                                "images/JL.jpg",
+                                "images/jl2.jpg",
                                 height: 75,
                                 width: 75,
                                 fit: BoxFit.cover,
@@ -313,6 +314,13 @@ class _ChatState extends State<Chat> {
                           context,
                           CupertinoPageRoute(
                               builder: (context) => const MykeChatPage()),
+                        );
+                      }
+                      else if (participant["name"] == "John Lloyd Guevarra") {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const JlChatPage()),
                         );
                       }
                     },
