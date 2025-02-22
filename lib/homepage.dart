@@ -18,16 +18,44 @@ class _HomepageState extends State<Homepage> {
       navigationBar: CupertinoNavigationBar(
         backgroundColor: CupertinoColors.black,
         border: null,
-        middle: const Text(
-          "InstaTalk",
-          style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.white),
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 8.0), // Adjust the top padding as needed
+          child: const Text(
+            "InstaTalk",
+            style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.white),
+          ),
         ),
-        trailing: CupertinoButton(
-          padding: EdgeInsets.zero,
-          child: const Icon(CupertinoIcons.ellipsis_vertical, size: 25, color: CupertinoColors.white),
-          onPressed: () {
-            _showDropdownMenu(context);
-          },
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.heart, size: 25, color: CupertinoColors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(builder: (context) => const NotificationsPage()),
+                );
+              },
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.chat_bubble_2, size: 25, color: CupertinoColors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(builder: (context) => Chat()),
+                );
+              },
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.power, size: 25, color: CupertinoColors.white),
+              onPressed: () {
+                _showLogoutDialog(context);
+              },
+            ),
+          ],
         ),
       ),
       child: SafeArea(
@@ -327,51 +355,6 @@ class _HomepageState extends State<Homepage> {
           ],
         );
       },
-    );
-  }
-
-  // Show Dropdown Menu
-  void _showDropdownMenu(BuildContext context) {
-    showCupertinoModalPopup(
-      context: context,
-      builder: (BuildContext context) => CupertinoActionSheet(
-        title: const Text('Menu'),
-        actions: <CupertinoActionSheetAction>[
-          CupertinoActionSheetAction(
-            child: const Text('Notifications'),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                CupertinoPageRoute(builder: (context) => const NotificationsPage()),
-              );
-            },
-          ),
-          CupertinoActionSheetAction(
-            child: const Text('Chat'),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                CupertinoPageRoute(builder: (context) => Chat()),
-              );
-            },
-          ),
-          CupertinoActionSheetAction(
-            child: const Text('Log Out', style: TextStyle(color: CupertinoColors.destructiveRed)),
-            onPressed: () {
-              Navigator.pop(context);
-              _showLogoutDialog(context);
-            },
-          ),
-        ],
-        cancelButton: CupertinoActionSheetAction(
-          child: const Text('Cancel'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
     );
   }
 }
