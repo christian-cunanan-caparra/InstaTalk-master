@@ -4,6 +4,7 @@ import 'jl_chat_page.dart';
 
 import 'christian_chat_page.dart';
 import 'jhuniel_chat_page.dart';
+import 'samuel_chat_page.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -323,6 +324,15 @@ class _ChatState extends State<Chat> {
                               builder: (context) => const JlChatPage()),
                         );
                       }
+
+                      else if (participant["name"] == "Samuel Miranda") {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const SamuelChatPage()),
+                        );
+                      }
+
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -389,7 +399,14 @@ class _ChatState extends State<Chat> {
                                   ),
 
 
-
+                                if (participant["name"] == "Samuel Miranda")
+                                  const Text(
+                                    "oo sir masarap thanks ulit nabusog ako.",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: CupertinoColors.systemGrey,
+                                    ),
+                                  ),
 
 
                               ],
