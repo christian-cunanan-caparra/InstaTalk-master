@@ -6,105 +6,59 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.black,
-      navigationBar: const CupertinoNavigationBar(
-        backgroundColor: CupertinoColors.black,
-        middle: Text(
-          "Notifications",
-          style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.white),
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: CupertinoColors.white,
+        border:  Border(
+          bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
         ),
-      ),
-      child: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            _buildNotificationItem(
-              "Christian Caparra + 1 other",
-              "Follow requests",
-              "images/ChristianCaparra.jpg",
+        leading: Container(
+          padding:  EdgeInsets.all(8),
+          child: GestureDetector(onTap: () {
+            Navigator.pop(context);
+            },
+            child:  Icon(CupertinoIcons.chevron_left, size: 25, color: CupertinoColors.black,
             ),
-            const SizedBox(height: 16),
-            _buildNotificationItem(
-              "John Lloyd Guevarra and Michael DeRamos followed Christian Caparra",
-              "1d",
-              "images/JL.jpg",
-            ),
-            const SizedBox(height: 16),
-            _buildNotificationItem(
-              "Michael DeRamos requested to follow you",
-              "3d",
-              "images/mike.jpg",
-            ),
-            const SizedBox(height: 16),
-            _buildNotificationItem(
-              "Jhuniel Galang requested to follow you",
-              "4d",
-              "images/dpjhuniel.jpg",
-            ),
-
-            const SizedBox(height: 16),
-            _buildNotificationItem(
-              "Jhuniel Galang and Samuel Mianda liked your post",
-              "5d",
-              "images/Jhuniel.jpg",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-
-  Widget _buildNotificationItem(String title, String subtitle, String imagePath) {
-    return Row(
-      children: [
-        // Profile Image
-        ClipOval(
-          child: Image.asset(
-            imagePath,
-            height: 50,
-            width: 50,
-            fit: BoxFit.cover,
           ),
         ),
-        const SizedBox(width: 10),
-
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  color: CupertinoColors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  color: CupertinoColors.systemGrey,
-                  fontSize: 14,
-                ),
-              ),
-            ],
+        middle: Text("Notifications & offers", style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.black,
           ),
         ),
+      ),
 
-        // CupertinoButton(
-        //   padding: EdgeInsets.zero,
-        //   child: const Icon(
-        //     CupertinoIcons.add,
-        //     color: CupertinoColors.activeBlue,
-        //     size: 20,
-        //   ),
-        //   onPressed: () {
-        //
-        //   },
-        // ),
-      ],
+      child: SafeArea(child: Padding(
+          padding:  EdgeInsets.only(top: 10),
+          child: Center(
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Container(width: 100, height: 100,
+                  decoration: BoxDecoration(shape: BoxShape.circle,
+                    gradient:  RadialGradient(colors: [CupertinoColors.systemGrey5, CupertinoColors.systemBlue],
+                      center: Alignment.center, radius: 0.6,
+                    ),
+                  ),
+                  child:  Center(child: Icon(CupertinoIcons.check_mark, size: 50, color: CupertinoColors.black,
+                    ),
+                  ),
+                ),
+                 SizedBox(height: 20),
+
+
+                 Text("You're all caught up", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+
+                 SizedBox(height: 10),
+
+
+                 Text("This is where you'll see notifications about your Barena Store account", textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14, color: CupertinoColors.systemGrey),
+
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

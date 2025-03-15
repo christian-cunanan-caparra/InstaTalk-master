@@ -1,526 +1,212 @@
 import 'package:flutter/cupertino.dart';
-import 'package:members_lists/mike_chat_page.dart';
-import 'jl_chat_page.dart';
+import 'package:flutter/material.dart';
 
-import 'christian_chat_page.dart';
-import 'jhuniel_chat_page.dart';
-import 'samuel_chat_page.dart';
-
-class Chat extends StatefulWidget {
+class Chat extends StatelessWidget {
   const Chat({super.key});
-
-  @override
-  State<Chat> createState() => _ChatState();
-}
-
-class _ChatState extends State<Chat> {
-  final TextEditingController _searchController = TextEditingController();
-  List<Map<String, String>> filteredParticipants = List.from(participants);
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController.addListener(_filterParticipants);
-  }
-
-  @override
-  void dispose() {
-    _searchController.removeListener(_filterParticipants);
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  void _filterParticipants() {
-    final query = _searchController.text.toLowerCase();
-    setState(() {
-      filteredParticipants = participants.where((participant) {
-        final name = participant["name"]!.toLowerCase();
-        return name.contains(query);
-      }).toList();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.black,
       navigationBar: CupertinoNavigationBar(
-        middle: const Text(
-          "RonnieSngl",
-          style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.white),
+        backgroundColor: CupertinoColors.white,
+        border:  Border(
+          bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
         ),
-        trailing: CupertinoButton(
-          padding: EdgeInsets.zero,
-          child: const Icon(
-            CupertinoIcons.info,
-            color: CupertinoColors.white,
+        leading: Container(
+
+          padding:  EdgeInsets.all(8),
+          child: GestureDetector(onTap: () {
+              Navigator.pop(context);
+            },
+            child:  Icon(CupertinoIcons.chevron_left, size: 25, color: CupertinoColors.black,
+            ),
           ),
-          onPressed: () {
-            _showMembersDialog(context);
-          },
         ),
-      ),
-      child: SafeArea(
-        child: Column(
-          children: [
-            // Search
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: CupertinoSearchTextField(
-                controller: _searchController,
-                placeholder: "Search",
-                style: const TextStyle(color: CupertinoColors.white),
-                onChanged: (value) {
-                  _filterParticipants();
-                },
-              ),
-            ),
-            const SizedBox(height: 10),
+        middle:  Text("Menu", style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.black,
+          ),
+        ),
+        trailing: GestureDetector(
+          onTap: () {
 
-            // Story Section
-            SizedBox(
-              height: 100,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                children: [
-                  GestureDetector(
-                    onTap: () => _showStoryDialog(context, "Your Story", "images/gfnisir.jpg"),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Stack(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                                ),
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    "images/gfnisir.jpg",
-                                    height: 75,
-                                    width: 75,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: CupertinoColors.activeBlue,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                                  ),
-                                  child: const Icon(
-                                    CupertinoIcons.add,
-                                    color: CupertinoColors.white,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            "Your Story",
-                            style: TextStyle(fontSize: 12, color: CupertinoColors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+            showCupertinoDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return CupertinoAlertDialog(
+                  title:  Text("Members"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
 
-                  GestureDetector(
-                    onTap: () => _showStoryDialog(context, "Christian", "images/ChristianCaparra.jpg"),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                            ),
-                            child: ClipOval(
-                              child: Image.asset(
-                                "images/ChristianCaparra.jpg",
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            "Christian",
-                            style: TextStyle(fontSize: 12, color: CupertinoColors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  GestureDetector(
-                    onTap: () => _showStoryDialog(context, "Jhuniel", "images/dpjhuniel.jpg"),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                            ),
-                            child: ClipOval(
-                              child: Image.asset(
-                                "images/dpjhuniel.jpg",
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            "Jhuniel",
-                            style: TextStyle(fontSize: 12, color: CupertinoColors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  GestureDetector(
-                    onTap: () => _showStoryDialog(context, "John Lloyd", "images/jl2.jpg"),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                            ),
-                            child: ClipOval(
-                              child: Image.asset(
-                                "images/JL1.jpg",
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            "John Lloyd",
-                            style: TextStyle(fontSize: 12, color: CupertinoColors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  GestureDetector(
-                    onTap: () => _showStoryDialog(context, "Michael", "images/mike.jpg"),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                            ),
-                            child: ClipOval(
-                              child: Image.asset(
-                                "images/mike.jpg",
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            "Michael",
-                            style: TextStyle(fontSize: 12, color: CupertinoColors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-//sas
-                  GestureDetector(
-                    onTap: () => _showStoryDialog(context, "Samuel", "images/sam.jpg"),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: CupertinoColors.activeBlue, width: 2),
-                            ),
-                            child: ClipOval(
-                              child: Image.asset(
-                                "images/sam.jpg",
-                                height: 75,
-                                width: 75,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            "Samuel",
-                            style: TextStyle(fontSize: 12, color: CupertinoColors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 10),
-
-            // Contact List
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                itemCount: filteredParticipants.length,
-                itemBuilder: (context, index) {
-                  var participant = filteredParticipants[index];
-
-                  return GestureDetector(
-                    onTap: () {
-                      if (participant["name"] == "Christian Caparra") {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(builder: (context) => const ChristianChatPage()),
-                        );
-                      } else if (participant["name"] == "Jhuniel Galang") {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const JhunielChatPage()),
-                        );
-                      }else if (participant["name"] == "Michael De Ramos") {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const MykeChatPage()),
-                        );
-                      }
-                      else if (participant["name"] == "John Lloyd Guevarra") {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const JlChatPage()),
-                        );
-                      }
-
-                      else if (participant["name"] == "Samuel Miranda") {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const SamuelChatPage()),
-                        );
-                      }
-
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
                         children: [
                           ClipOval(
-                            child: Image.asset(
-                              participant["image"]!,
-                              height: 50,
-                              width: 50,
+                            child:
+                            Image.asset("images/ChristianCaparra.jpg", height: 40, width: 40,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      participant["name"]!,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: CupertinoColors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    if (participant["name"] == "Christian Caparra")
-                                      const Text(
-                                        "Sige po sir Thankyou po",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: CupertinoColors.systemGrey,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                if (participant["name"] == "Jhuniel Galang")
-                                  const Text(
-                                    "Thanksss sir mwa mwa chup chup!",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: CupertinoColors.systemGrey,
-                                    ),
-                                  ),
-                                if (participant["name"] == "Michael De Ramos")
-                                  const Text(
-                                    "Thanksss sir",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: CupertinoColors.systemGrey,
-                                    ),
-                                  ),
-                                if (participant["name"] == "John Lloyd Guevarra")
-                                  const Text(
-                                    "Ok sir HAHAHA, thank you po!",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: CupertinoColors.systemGrey,
-                                    ),
-                                  ),
-
-
-                                if (participant["name"] == "Samuel Miranda")
-                                  const Text(
-                                    "oo sir masarap thanks ulit nabusog ako.",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: CupertinoColors.systemGrey,
-                                    ),
-                                  ),
-
-
-                              ],
-                            ),
-                          ),
+                           SizedBox(width: 10),
+                           Text("Christian Caparra"),
                         ],
                       ),
+                       SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          ClipOval(
+                            child:
+                            Image.asset("images/ChristianCaparra.jpg", height: 40, width: 40,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                           SizedBox(width: 10),
+                          Text("Christian Caparra"),
+                        ],
+                      ),
+                       SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          ClipOval(
+                            child:
+                            Image.asset("images/ChristianCaparra.jpg", height: 40, width: 40,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+
+                           SizedBox(width: 10),
+
+                          Text("Christian Caparra"),
+                        ],
+                      ),
+                    ],
+                  ),
+                  actions: <Widget>[
+                    CupertinoDialogAction(
+                      child:  Text("Close"), onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                  );
-                },
+                  ],
+                );
+              },
+            );
+          },
+          child:  Icon(CupertinoIcons.info_circle, size: 25, color: CupertinoColors.black,
+          ),
+        ),
+      ),
+      child: SafeArea(child: SingleChildScrollView(child: Column(
+            children: [
+              Padding(
+                padding:  EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    ClipOval(
+                      child:
+                      Image.asset("images/ChristianCaparra.jpg", height: 50, width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                     SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:  [
+                        Text("User Name", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text("Details", style: TextStyle(color: CupertinoColors.systemGrey)),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+
+              Container(
+                padding:  EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                width: double.infinity, color: CupertinoColors.systemGrey6,
+                child:  Text("My Games"),
+              ),
+
+              Padding(
+                padding:  EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                     SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                         Text("Wild Rift", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(40),
+                          child:
+                          Image.asset("images/legends.jpg", height: 80, width: 80,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              // Menu Items
+              CupertinoListSection.insetGrouped(
+                children: [
+                  CupertinoListTile(
+                    leading:  Icon(Icons.facebook, color: Colors.blue),
+                    title:  Text("Facebook"),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children:  [
+                        Icon(CupertinoIcons.smallcircle_fill_circle, color: CupertinoColors.systemRed, size: 10),
+                        Icon(CupertinoIcons.chevron_right),
+                      ],
+                    ),
+                    onTap: () {},
+                  ),
+                  CupertinoListTile(
+                    leading:  Icon(CupertinoIcons.gear),
+                    title:  Text("Settings"),
+                    trailing:  Icon(CupertinoIcons.chevron_right),
+                    onTap: () {},
+                  ),
+
+                  CupertinoListTile(
+                    leading:  Icon(CupertinoIcons.square_arrow_right),
+                    title:  Text("Logout"),
+                    onTap: () {
+
+                      showCupertinoDialog(context: context,
+                        builder: (BuildContext context) {
+                          return CupertinoAlertDialog(
+                            title:  Text("Are you sure you want to log out?"),
+                            actions: <Widget>[
+                              CupertinoDialogAction(
+                                child:  Text("Cancel"), onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              CupertinoDialogAction(child:  Text("Log Out"),
+                                onPressed: () {
+
+                                  Navigator.pushReplacementNamed(context, '/');
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-
-  // Show Story Dialog
-  void _showStoryDialog(BuildContext context, String name, String imagePath) {
-    showCupertinoDialog(
-      context: context,
-      builder: (context) {
-        return CupertinoPageScaffold(
-          backgroundColor: CupertinoColors.black,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                top: 35,
-                right: 20,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: CupertinoColors.black,
-                    ),
-                    padding: const EdgeInsets.all(8),
-                    child: const Icon(
-                      CupertinoIcons.xmark,
-                      color: CupertinoColors.white,
-                      size: 24,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  // Show Members Dialog
-  void _showMembersDialog(BuildContext context) {
-    showCupertinoDialog(
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          title: const Text("Members"),
-          content: Column(
-            children: participants.map((participant) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  children: [
-                    ClipOval(
-                      child: Image.asset(
-                        participant["image"]!,
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      participant["name"]!,
-                      style: const TextStyle(
-                        color: CupertinoColors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-          ),
-          actions: [
-            CupertinoDialogAction(
-              child: const Text("Close"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }
-
-// Data
-List<Map<String, String>> participants = [
-  {"name": "Christian Caparra", "image": "images/ChristianCaparra.jpg"},
-  {"name": "Jhuniel Galang", "image": "images/dpjhuniel.jpg"},
-  {"name": "John Lloyd Guevarra", "image": "images/JL1.jpg"},
-  {"name": "Michael De Ramos", "image": "images/mike.jpg"},
-  {"name": "Samuel Miranda", "image": "images/sam.jpg"},
-];
