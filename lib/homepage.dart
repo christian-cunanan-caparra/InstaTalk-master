@@ -516,6 +516,8 @@ class _HomepageState extends State<Homepage> {
 
   //para sa featured to
 
+  //lol
+
   void showLeagueOfLegendsModal(BuildContext context) {
     showCupertinoModalPopup(context: context,
       builder: (context) => SizedBox(
@@ -667,6 +669,7 @@ class _HomepageState extends State<Homepage> {
   }
 
 
+  //cod
 
 
   void showCODMModal(BuildContext context) {
@@ -816,6 +819,8 @@ class _HomepageState extends State<Homepage> {
   }
 
 
+
+  //freefire
 
   void showFreeFireModal(BuildContext context) {
     showCupertinoModalPopup(context: context,
@@ -969,6 +974,8 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
+
+  //pb
 
 
   void showPointBlankModal(BuildContext context) {
@@ -1130,6 +1137,10 @@ class _HomepageState extends State<Homepage> {
 
 
  //modal banner
+
+  //lol
+
+
   void _showLoLModal(BuildContext context) {
     showCupertinoModalPopup(context: context,
       builder: (BuildContext context) {
@@ -1338,7 +1349,7 @@ class _HomepageState extends State<Homepage> {
 
 
 
-
+  //cod
 
 
   void _showCODModal(BuildContext context) {
@@ -1382,7 +1393,7 @@ class _HomepageState extends State<Homepage> {
 
 
 
-
+  //freefire
 
 
   void _showFreeFireModal(BuildContext context) {
@@ -1428,7 +1439,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-
+  //pb
 
   void _showPBModal(BuildContext context) {
     showCupertinoModalPopup(context: context,
