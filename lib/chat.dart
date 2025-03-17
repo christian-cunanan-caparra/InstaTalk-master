@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:members_lists/settings.dart';
 
 class Chat extends StatelessWidget {
   const Chat({super.key});
@@ -167,40 +168,21 @@ class Chat extends StatelessWidget {
                     ),
                     onTap: () {},
                   ),
-                  CupertinoListTile(
-                    leading:  Icon(CupertinoIcons.gear),
-                    title:  Text("Settings"),
-                    trailing:  Icon(CupertinoIcons.chevron_right),
-                    onTap: () {},
-                  ),
 
                   CupertinoListTile(
-                    leading:  Icon(CupertinoIcons.square_arrow_right),
-                    title:  Text("Logout"),
+                    leading: Icon(CupertinoIcons.gear),
+                    title: Text("Settings"),
+                    trailing: Icon(CupertinoIcons.chevron_right),
                     onTap: () {
-
-                      showCupertinoDialog(context: context,
-                        builder: (BuildContext context) {
-                          return CupertinoAlertDialog(
-                            title:  Text("Are you sure you want to log out?"),
-                            actions: <Widget>[
-                              CupertinoDialogAction(
-                                child:  Text("Cancel"), onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              CupertinoDialogAction(child:  Text("Log Out"),
-                                onPressed: () {
-
-                                  Navigator.pushReplacementNamed(context, '/');
-                                },
-                              ),
-                            ],
-                          );
-                        },
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => SettingsScreen()),
                       );
                     },
                   ),
+
+
+
                 ],
               ),
             ],
