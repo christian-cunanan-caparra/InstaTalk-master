@@ -60,7 +60,7 @@ class Chat extends StatelessWidget {
                             ),
                           ),
                            SizedBox(width: 10),
-                          Text("Christian Caparra"),
+                          Text("John Lloyd Guevarra"),
                         ],
                       ),
                        SizedBox(height: 10),
