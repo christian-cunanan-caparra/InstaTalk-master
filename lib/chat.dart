@@ -55,7 +55,7 @@ class Chat extends StatelessWidget {
                         children: [
                           ClipOval(
                             child:
-                            Image.asset("images/ChristianCaparra.jpg", height: 40, width: 40,
+                            Image.asset("images/JL1.jpg", height: 40, width: 40,
                               fit: BoxFit.cover,
                             ),
                           ),
