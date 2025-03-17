@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:members_lists/settings.dart';
 
+import 'fb.dart';
+
 class Chat extends StatelessWidget {
   const Chat({super.key});
 
@@ -157,17 +159,23 @@ class Chat extends StatelessWidget {
               CupertinoListSection.insetGrouped(
                 children: [
                   CupertinoListTile(
-                    leading:  Icon(Icons.facebook, color: Colors.blue),
-                    title:  Text("Facebook"),
+                    leading: Icon(Icons.facebook, color: Colors.blue),
+                    title: Text("Facebook"),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children:  [
+                      children: [
                         Icon(CupertinoIcons.smallcircle_fill_circle, color: CupertinoColors.systemRed, size: 10),
                         Icon(CupertinoIcons.chevron_right),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => FacebookReconnectScreen()),
+                      );
+                    },
                   ),
+
 //lilinisin
                   CupertinoListTile(
                     leading: Icon(CupertinoIcons.gear),
