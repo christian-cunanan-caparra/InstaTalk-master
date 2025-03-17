@@ -1137,12 +1137,14 @@ class _HomepageState extends State<Homepage> {
 
 
  //modal banner
+  //aayusin kopaand lilinisan
 
   //lol
 
 
   void _showLoLModal(BuildContext context) {
-    showCupertinoModalPopup(context: context,
+    showCupertinoModalPopup(
+      context: context,
       builder: (BuildContext context) {
         double progress = 0.0;
         bool isDownloading = false;
@@ -1173,12 +1175,13 @@ class _HomepageState extends State<Homepage> {
                       isInstalling = true;
                     });
 
-
-                    showCupertinoDialog(context: context,
+                    showCupertinoDialog(
+                      context: context,
                       builder: (BuildContext context) {
-                        return CupertinoAlertDialog(title: Text("Installing..."),
+                        return CupertinoAlertDialog(
+                          title: Text("Installing..."),
                           content: Padding(
-                            padding:  EdgeInsets.symmetric(vertical: 10),
+                            padding: EdgeInsets.symmetric(vertical: 10),
                             child: Text("Please wait while the installation completes."),
                           ),
                         );
@@ -1197,12 +1200,13 @@ class _HomepageState extends State<Homepage> {
 
                       if (!context.mounted) return;
 
-
-                      showCupertinoDialog(context: context,
+                      showCupertinoDialog(
+                        context: context,
                         builder: (BuildContext context) {
-                          return CupertinoAlertDialog(title: Text("Installation Done"),
+                          return CupertinoAlertDialog(
+                            title: Text("Installation Done"),
                             content: Padding(
-                              padding:  EdgeInsets.symmetric(vertical: 10),
+                              padding: EdgeInsets.symmetric(vertical: 10),
                               child: Text("League of Legends is installed."),
                             ),
                             actions: [
@@ -1210,15 +1214,14 @@ class _HomepageState extends State<Homepage> {
                                 child: Text("Open", style: TextStyle(color: CupertinoColors.systemBlue)),
                                 onPressed: () {
                                   Navigator.pop(context);
-
-
-                                  Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen(),
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => WelcomeScreen(),
                                     ),
                                   );
                                 },
                               ),
-
-
                               CupertinoDialogAction(
                                 child: Text("Close", style: TextStyle(color: CupertinoColors.destructiveRed)),
                                 onPressed: () {
@@ -1235,106 +1238,186 @@ class _HomepageState extends State<Homepage> {
               }
             }
 
-            return CupertinoPopupSurface(
-              isSurfacePainted: true,
-              child: Container(
-                padding: EdgeInsets.only(bottom: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset("images/legends.jpg", width: double.infinity, height: 200, fit: BoxFit.cover,
-                      ),
+            return CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(
+                backgroundColor: CupertinoColors.white,
+                border: Border(
+                  bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
+                ),
+                leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      CupertinoIcons.chevron_left,
+                      size: 25,
+                      color: CupertinoColors.black,
+                    ),
+                  ),
+                ),
+                middle: Text(
+                  "League of Legends",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: CupertinoColors.black,
+                  ),
+                ),
+              ),
 
-                       SizedBox(height: 10),
-
-
-
-                       Text("League of Legends", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                      ),
-
-
-                       SizedBox(height: 10),
-
-
-                      if (isDownloading)
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: Container(
+                  color: CupertinoColors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "images/legends.jpg",
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(height: 10),
                         Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                          child: Column(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "League of Legends",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "5v5 MOBA Action! Team up with friends, select a champion, & dive into the Rift.",
+                            style: TextStyle(fontSize: 14, color: Colors.black54),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Wrap(
+                            spacing: 8.0,
                             children: [
-                              Text("Downloading... ${((progress) * 100).toInt()}%", style: TextStyle(color: CupertinoColors.black),
+                              tagButton("MOBA"),
+                              tagButton("Battling"),
+                              tagButton("Fantasy"),
+                              tagButton("Stylized"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ratingInfo("3.4 ★", "2M reviews"),
+                              ratingInfo("12+", "Rated for 12+"),
+                              ratingInfo("50M+", "Downloads"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        SizedBox(
+                          height: 120,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            children: [
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
                               ),
-
-
-                               SizedBox(height: 8),
-
-
-                              LinearProgressIndicator(
-                                value: progress,
-                                minHeight: 6, color: CupertinoColors.systemRed,
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
                               ),
                             ],
                           ),
                         ),
-
-                      // Show Installing button
-                      if (isInstalling)
+                        SizedBox(height: 15),
                         Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-
+                          padding: EdgeInsets.all(16.0),
                           child: SizedBox(
                             width: double.infinity,
-                            child: CupertinoButton(color: CupertinoColors.systemRed,
-                              padding:  EdgeInsets.symmetric(vertical: 12),
+                            child: isDownloading
+                                ? Column(
+                              children: [
+                                Text(
+                                  "Downloading... ${((progress) * 100).toInt()}%",
+                                  style: TextStyle(color: CupertinoColors.black),
+                                ),
+                                SizedBox(height: 8),
+                                LinearProgressIndicator(
+                                  value: progress,
+                                  minHeight: 6,
+                                  color: CupertinoColors.systemRed,
+                                ),
+                              ],
+                            )
+                                : isInstalling
+                                ? CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
                               onPressed: null,
-                              child: Text("Installing...", style: TextStyle(color: CupertinoColors.black),
+                              child: Text(
+                                "Installing...",
+                                style: TextStyle(color: CupertinoColors.black),
+                              ),
+                            )
+                                : isInstalled
+                                ? CupertinoButton(
+                              color: CupertinoColors.destructiveRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Open",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => WelcomeScreen(),
+                                  ),
+                                );
+                              },
+                            )
+                                : CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: startDownload,
+                              child: Text(
+                                "Download",
+                                style: TextStyle(color: CupertinoColors.white),
                               ),
                             ),
                           ),
                         ),
-
-
-
-                      if (!isDownloading && !isInstalling && !isInstalled)
-                        Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-
-
-                          child: SizedBox(
-
-
-                            width: double.infinity,
-                            child: CupertinoButton(
-                              color: CupertinoColors.systemRed,
-                              padding:  EdgeInsets.symmetric(vertical: 12),
-                              onPressed: startDownload,
-                              child: Text("Download", style: TextStyle(color: CupertinoColors.white)),
-                            ),
-                          ),
-                        ),
-
-
-                      if (isInstalled)
-                        Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-
-                          child: SizedBox(
-
-                            width: double.infinity,
-                            child: CupertinoButton(
-                              color: CupertinoColors.destructiveRed,
-                              padding:  EdgeInsets.symmetric(vertical: 12),
-                              child: Text("Open", style: TextStyle(color: CupertinoColors.white)),
-                              onPressed: () {
-
-                                Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomeScreen(),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -1344,7 +1427,6 @@ class _HomepageState extends State<Homepage> {
       },
     );
   }
-
 
 
 

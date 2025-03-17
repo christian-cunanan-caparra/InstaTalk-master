@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
-
+//lilinisin
   @override
+
   Widget build(BuildContext context) {
+
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         backgroundColor: CupertinoColors.white,
