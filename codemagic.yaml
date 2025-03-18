@@ -6,7 +6,7 @@ workflows:
     environment:
       flutter: stable
       groups:
-        - google_credentials # Reference to the Play Store API JSON key
+        - google_credentials # Ensure this is properly set in Codemagic
       vars:
         PACKAGE_NAME: "com.example.members_lists" # Replace with your actual package name
     scripts:
@@ -14,12 +14,12 @@ workflows:
         script: flutter pub get
 
       - name: Build AAB
-        script: flutter build appbundle
+        script: flutter build appbundle --release
 
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
 
     publishing:
       google_play:
-        credentials: $GOOGLE_CREDENTIALS
+        credentials: $GOOGLE_CREDENTIALS # Ensure this is correctly set as an environment variable in Codemagic
         track: internal
