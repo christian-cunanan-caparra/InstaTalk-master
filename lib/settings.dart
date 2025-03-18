@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'notification_settings.dart';
+import 'privacy_settings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -41,18 +43,31 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 CupertinoListTile(
                   leading: Icon(CupertinoIcons.bell, color: CupertinoColors.systemOrange),
-                  title: Text("Notification"),
+                  title: Text("Notificationn"),
                   trailing: CupertinoListTileChevron(),
-                  onTap: () {},
+                  onTap: () {Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => NotificationSettings()),
+                  );},
                 ),
+
+
                 CupertinoListTile(
                   leading: Icon(CupertinoIcons.lock, color: CupertinoColors.systemOrange),
                   title: Text("Privacy"),
                   trailing: CupertinoListTileChevron(),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => PrivacySettings()),
+                    );
+
+                  },
                 ),
               ],
             ),
+
+
             CupertinoListSection.insetGrouped(
               children: [
                 CupertinoListTile(

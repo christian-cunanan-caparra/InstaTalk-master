@@ -491,6 +491,66 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 10),
+
+
+                       //---------------
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: CupertinoColors.systemGrey5,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child:
+                                Image.asset("images/sts1.jpg", fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return  Center(
+                                      child: Text("Summertime Saga", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: CupertinoColors.black,
+                                      ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+
+
+                          SizedBox(width: 10),
+
+
+                          Expanded(
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: CupertinoColors.systemGrey5,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child:
+                                Image.asset("images/fn1.jpeg", fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return  Center(
+                                      child: Text("Fap Ninja", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: CupertinoColors.black,
+                                      ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+
 
 
                        SizedBox(height: 10),
