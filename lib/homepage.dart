@@ -1434,132 +1434,871 @@ class _HomepageState extends State<Homepage> {
   //cod
 
 
+  //_showCODModal
   void _showCODModal(BuildContext context) {
-    showCupertinoModalPopup(context: context,
+    showCupertinoModalPopup(
+      context: context,
       builder: (BuildContext context) {
-        return CupertinoPopupSurface(
-          isSurfacePainted: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("images/codm.jpg", width: double.infinity, height: 200, fit: BoxFit.cover,
-              ),
+        double progress = 0.0;
+        bool isDownloading = false;
+        bool isInstalling = false;
+        bool isInstalled = false;
 
-              SizedBox(height: 10),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            void startDownload() {
+              setState(() {
+                isDownloading = true;
+                progress = 0.0;
+              });
 
-               Text("Call of Duty Mobile", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
+              for (int i = 1; i <= 10; i++) {
+                Future.delayed(Duration(seconds: i), () {
+                  if (!context.mounted) return;
 
+                  setState(() {
+                    progress = i / 10;
+                  });
 
-               SizedBox(height: 10),
+                  if (i == 10) {
+                    if (!context.mounted) return;
 
-              Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton(
-                    color: CupertinoColors.systemRed,
-                    padding: EdgeInsets.symmetric(vertical: 12), // Button height adjustment
-                    child:  Text("Download", style: TextStyle(color: CupertinoColors.white)),
-                    onPressed: () => Navigator.pop(context),
+                    setState(() {
+                      isDownloading = false;
+                      isInstalling = true;
+                    });
+
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CupertinoAlertDialog(
+                          title: Text("Installing..."),
+                          content: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            child: Text("Please wait while the installation completes."),
+                          ),
+                        );
+                      },
+                    );
+
+                    Future.delayed(Duration(seconds: 3), () {
+                      if (!context.mounted) return;
+
+                      Navigator.pop(context);
+
+                      setState(() {
+                        isInstalling = false;
+                        isInstalled = true;
+                      });
+
+                      if (!context.mounted) return;
+
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return CupertinoAlertDialog(
+                            title: Text("Installation Done"),
+                            content: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text("League of Legends is installed."),
+                            ),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: Text("Open", style: TextStyle(color: CupertinoColors.systemBlue)),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => WelcomeScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              CupertinoDialogAction(
+                                child: Text("Close", style: TextStyle(color: CupertinoColors.destructiveRed)),
+                                onPressed: () {
+                                  if (context.mounted) Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    });
+                  }
+                });
+              }
+            }
+
+            return CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(
+                backgroundColor: CupertinoColors.white,
+                border: Border(
+                  bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
+                ),
+                leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      CupertinoIcons.chevron_left,
+                      size: 25,
+                      color: CupertinoColors.black,
+                    ),
+                  ),
+                ),
+                middle: Text(
+                  "Call of Duty Mobile",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: CupertinoColors.black,
                   ),
                 ),
               ),
-            ],
-          ),
+
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: Container(
+                  color: CupertinoColors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "images/codm.jpg",
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "Call of Duty Mobile",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "Call Of Duty: Mobile (CODM) features tons of game modes for a free-to-play (F2P) game. To compare, an average F2P game has about 5 game modes and their equivalent ranked mode(s).",
+                            style: TextStyle(fontSize: 14, color: Colors.black54),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Wrap(
+                            spacing: 8.0,
+                            children: [
+                              tagButton("Team Death Match"),
+                              tagButton("Free For All"),
+                              tagButton("Gun Fight"),
+                              tagButton("Battle Royal"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ratingInfo("3.4 ★", "2M reviews"),
+                              ratingInfo("12+", "Rated for 12+"),
+                              ratingInfo("50M+", "Downloads"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        SizedBox(
+                          height: 120,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            children: [
+                              Image.asset(
+                                "images/codm0.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/codm1.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/codm2.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/codm3.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: isDownloading
+                                ? Column(
+                              children: [
+                                Text(
+                                  "Downloading... ${((progress) * 100).toInt()}%",
+                                  style: TextStyle(color: CupertinoColors.black),
+                                ),
+                                SizedBox(height: 8),
+                                LinearProgressIndicator(
+                                  value: progress,
+                                  minHeight: 6,
+                                  color: CupertinoColors.systemRed,
+                                ),
+                              ],
+                            )
+                                : isInstalling
+                                ? CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: null,
+                              child: Text(
+                                "Installing...",
+                                style: TextStyle(color: CupertinoColors.black),
+                              ),
+                            )
+                                : isInstalled
+                                ? CupertinoButton(
+                              color: CupertinoColors.destructiveRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Open",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => WelcomeScreen(),
+                                  ),
+                                );
+                              },
+                            )
+                                : CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: startDownload,
+                              child: Text(
+                                "Download",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );
   }
+
+
 
 
 
   //freefire
 
 
+  //_showFreeFireModal
   void _showFreeFireModal(BuildContext context) {
-    showCupertinoModalPopup(context: context,
+    showCupertinoModalPopup(
+      context: context,
       builder: (BuildContext context) {
-        return CupertinoPopupSurface(
-          isSurfacePainted: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("images/FreeFire.jpg", width: double.infinity, height: 200, fit: BoxFit.cover,
-              ),
+        double progress = 0.0;
+        bool isDownloading = false;
+        bool isInstalling = false;
+        bool isInstalled = false;
 
+        return StatefulBuilder(
+          builder: (context, setState) {
+            void startDownload() {
+              setState(() {
+                isDownloading = true;
+                progress = 0.0;
+              });
 
-               SizedBox(height: 10),
+              for (int i = 1; i <= 10; i++) {
+                Future.delayed(Duration(seconds: i), () {
+                  if (!context.mounted) return;
 
+                  setState(() {
+                    progress = i / 10;
+                  });
 
-               Text("Free Fire", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
+                  if (i == 10) {
+                    if (!context.mounted) return;
 
+                    setState(() {
+                      isDownloading = false;
+                      isInstalling = true;
+                    });
 
-               SizedBox(height: 10),
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CupertinoAlertDialog(
+                          title: Text("Installing..."),
+                          content: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            child: Text("Please wait while the installation completes."),
+                          ),
+                        );
+                      },
+                    );
 
+                    Future.delayed(Duration(seconds: 3), () {
+                      if (!context.mounted) return;
 
+                      Navigator.pop(context);
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton(
-                    color: CupertinoColors.systemRed,
-                    padding: EdgeInsets.symmetric(vertical: 12), // Button height adjustment
-                    child:  Text("Download", style: TextStyle(color: CupertinoColors.white)),
-                    onPressed: () => Navigator.pop(context),
+                      setState(() {
+                        isInstalling = false;
+                        isInstalled = true;
+                      });
+
+                      if (!context.mounted) return;
+
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return CupertinoAlertDialog(
+                            title: Text("Installation Done"),
+                            content: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text("League of Legends is installed."),
+                            ),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: Text("Open", style: TextStyle(color: CupertinoColors.systemBlue)),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => WelcomeScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              CupertinoDialogAction(
+                                child: Text("Close", style: TextStyle(color: CupertinoColors.destructiveRed)),
+                                onPressed: () {
+                                  if (context.mounted) Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    });
+                  }
+                });
+              }
+            }
+
+            return CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(
+                backgroundColor: CupertinoColors.white,
+                border: Border(
+                  bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
+                ),
+                leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      CupertinoIcons.chevron_left,
+                      size: 25,
+                      color: CupertinoColors.black,
+                    ),
+                  ),
+                ),
+                middle: Text(
+                  "League of Legends",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: CupertinoColors.black,
                   ),
                 ),
               ),
-            ],
-          ),
+
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: Container(
+                  color: CupertinoColors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "images/legends.jpg",
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "League of Legends",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "5v5 MOBA Action! Team up with friends, select a champion, & dive into the Rift.",
+                            style: TextStyle(fontSize: 14, color: Colors.black54),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Wrap(
+                            spacing: 8.0,
+                            children: [
+                              tagButton("MOBA"),
+                              tagButton("Battling"),
+                              tagButton("Fantasy"),
+                              tagButton("Stylized"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ratingInfo("3.4 ★", "2M reviews"),
+                              ratingInfo("12+", "Rated for 12+"),
+                              ratingInfo("50M+", "Downloads"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        SizedBox(
+                          height: 120,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            children: [
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: isDownloading
+                                ? Column(
+                              children: [
+                                Text(
+                                  "Downloading... ${((progress) * 100).toInt()}%",
+                                  style: TextStyle(color: CupertinoColors.black),
+                                ),
+                                SizedBox(height: 8),
+                                LinearProgressIndicator(
+                                  value: progress,
+                                  minHeight: 6,
+                                  color: CupertinoColors.systemRed,
+                                ),
+                              ],
+                            )
+                                : isInstalling
+                                ? CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: null,
+                              child: Text(
+                                "Installing...",
+                                style: TextStyle(color: CupertinoColors.black),
+                              ),
+                            )
+                                : isInstalled
+                                ? CupertinoButton(
+                              color: CupertinoColors.destructiveRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Open",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => WelcomeScreen(),
+                                  ),
+                                );
+                              },
+                            )
+                                : CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: startDownload,
+                              child: Text(
+                                "Download",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );
   }
 
   //pb
+  //_showPBModal
 
   void _showPBModal(BuildContext context) {
-    showCupertinoModalPopup(context: context,
+    showCupertinoModalPopup(
+      context: context,
       builder: (BuildContext context) {
-        return CupertinoPopupSurface(
-          isSurfacePainted: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("images/pb.jpg", width: double.infinity, height: 200, fit: BoxFit.cover,
-              ),
+        double progress = 0.0;
+        bool isDownloading = false;
+        bool isInstalling = false;
+        bool isInstalled = false;
 
+        return StatefulBuilder(
+          builder: (context, setState) {
+            void startDownload() {
+              setState(() {
+                isDownloading = true;
+                progress = 0.0;
+              });
 
-               SizedBox(height: 10),
+              for (int i = 1; i <= 10; i++) {
+                Future.delayed(Duration(seconds: i), () {
+                  if (!context.mounted) return;
 
+                  setState(() {
+                    progress = i / 10;
+                  });
 
-               Text("Point Blank", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
+                  if (i == 10) {
+                    if (!context.mounted) return;
 
+                    setState(() {
+                      isDownloading = false;
+                      isInstalling = true;
+                    });
 
-               SizedBox(height: 10),
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CupertinoAlertDialog(
+                          title: Text("Installing..."),
+                          content: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            child: Text("Please wait while the installation completes."),
+                          ),
+                        );
+                      },
+                    );
 
+                    Future.delayed(Duration(seconds: 3), () {
+                      if (!context.mounted) return;
 
-              Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton(
-                    color: CupertinoColors.systemRed,
-                    padding: EdgeInsets.symmetric(vertical: 12),
-                    child:  Text("Download", style: TextStyle(color: CupertinoColors.white)),
-                    onPressed: () => Navigator.pop(context),
+                      Navigator.pop(context);
+
+                      setState(() {
+                        isInstalling = false;
+                        isInstalled = true;
+                      });
+
+                      if (!context.mounted) return;
+
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return CupertinoAlertDialog(
+                            title: Text("Installation Done"),
+                            content: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Text("League of Legends is installed."),
+                            ),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: Text("Open", style: TextStyle(color: CupertinoColors.systemBlue)),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => WelcomeScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              CupertinoDialogAction(
+                                child: Text("Close", style: TextStyle(color: CupertinoColors.destructiveRed)),
+                                onPressed: () {
+                                  if (context.mounted) Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    });
+                  }
+                });
+              }
+            }
+
+            return CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(
+                backgroundColor: CupertinoColors.white,
+                border: Border(
+                  bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
+                ),
+                leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      CupertinoIcons.chevron_left,
+                      size: 25,
+                      color: CupertinoColors.black,
+                    ),
+                  ),
+                ),
+                middle: Text(
+                  "League of Legends",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: CupertinoColors.black,
                   ),
                 ),
               ),
-            ],
-          ),
+
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: Container(
+                  color: CupertinoColors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "images/legends.jpg",
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "League of Legends",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "5v5 MOBA Action! Team up with friends, select a champion, & dive into the Rift.",
+                            style: TextStyle(fontSize: 14, color: Colors.black54),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Wrap(
+                            spacing: 8.0,
+                            children: [
+                              tagButton("MOBA"),
+                              tagButton("Battling"),
+                              tagButton("Fantasy"),
+                              tagButton("Stylized"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ratingInfo("3.4 ★", "2M reviews"),
+                              ratingInfo("12+", "Rated for 12+"),
+                              ratingInfo("50M+", "Downloads"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        SizedBox(
+                          height: 120,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            children: [
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                              SizedBox(width: 10),
+                              Image.asset(
+                                "images/legends.jpg",
+                                width: 180,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: isDownloading
+                                ? Column(
+                              children: [
+                                Text(
+                                  "Downloading... ${((progress) * 100).toInt()}%",
+                                  style: TextStyle(color: CupertinoColors.black),
+                                ),
+                                SizedBox(height: 8),
+                                LinearProgressIndicator(
+                                  value: progress,
+                                  minHeight: 6,
+                                  color: CupertinoColors.systemRed,
+                                ),
+                              ],
+                            )
+                                : isInstalling
+                                ? CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: null,
+                              child: Text(
+                                "Installing...",
+                                style: TextStyle(color: CupertinoColors.black),
+                              ),
+                            )
+                                : isInstalled
+                                ? CupertinoButton(
+                              color: CupertinoColors.destructiveRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Open",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => WelcomeScreen(),
+                                  ),
+                                );
+                              },
+                            )
+                                : CupertinoButton(
+                              color: CupertinoColors.systemRed,
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              onPressed: startDownload,
+                              child: Text(
+                                "Download",
+                                style: TextStyle(color: CupertinoColors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );
