@@ -1329,28 +1329,28 @@ class _HomepageState extends State<Homepage> {
                             padding: EdgeInsets.symmetric(horizontal: 16.0),
                             children: [
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/lol3.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/lol4.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/lol5.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/lol6.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
