@@ -5,6 +5,13 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+
+
+
+
+
+
+
 android {
     namespace = "com.example.members_lists"
     compileSdk = flutter.compileSdkVersion

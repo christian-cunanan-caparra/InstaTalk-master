@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:members_lists/settings.dart';
-
 import 'fb.dart';
 
 class Chat extends StatelessWidget {
