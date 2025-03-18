@@ -42,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 CupertinoListTile(
                   leading: Icon(CupertinoIcons.bell, color: CupertinoColors.systemOrange),
-                  title: Text("Notification"),
+                  title: Text("Notificationn"),
                   trailing: CupertinoListTileChevron(),
                   onTap: () {Navigator.push(
                     context,
