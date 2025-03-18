@@ -14,72 +14,74 @@ class _PrivacySettingsState extends State<PrivacySettings> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text("Privacy"),
+        backgroundColor: CupertinoColors.white,
+        border: Border(
+          bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
+        ),
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
-          child: Icon(CupertinoIcons.back),
+          child: Icon(CupertinoIcons.chevron_left, size: 25, color: CupertinoColors.black),
           onPressed: () => Navigator.pop(context),
+        ),
+        middle: Text(
+          "Privacy",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: CupertinoColors.black,
+          ),
         ),
       ),
       child: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
-            // Message from Stranger Toggle
-            _buildToggleTile(
-              "Message from stranger",
-              messageFromStranger,
-                  (bool value) {
-                setState(() {
-                  messageFromStranger = value;
-                });
-              },
+            CupertinoListSection.insetGrouped(
+              children: [
+                CupertinoListTile(
+                  title: Text("Message from strangers"),
+                  subtitle: Text(
+                    "Allow messages from users who are not in your contacts.",
+                    style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
+                  ),
+                  trailing: CupertinoSwitch(
+                    value: messageFromStranger,
+                    onChanged: (bool value) {
+                      setState(() {
+                        messageFromStranger = value;
+                      });
+                    },
+                  ),
+                ),
+                CupertinoListTile(
+                  title: Text("Request from strangers"),
+                  subtitle: Text(
+                    "Allow friend requests from users outside your contacts.",
+                    style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
+                  ),
+                  trailing: CupertinoSwitch(
+                    value: requestFromStranger,
+                    onChanged: (bool value) {
+                      setState(() {
+                        requestFromStranger = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
-
-            // Request from Stranger Toggle
-            _buildToggleTile(
-              "Request from stranger",
-              requestFromStranger,
-                  (bool value) {
-                setState(() {
-                  requestFromStranger = value;
-                });
-              },
-            ),
-
-            // Blacklist Navigation Tile
-            _buildNavigationTile(
-              "Blacklist",
-                  () {
-                // Navigate to Blacklist page (You can create a Blacklist page separately)
-              },
+            CupertinoListSection.insetGrouped(
+              children: [
+                CupertinoListTile(
+                  title: Text("Blacklist"),
+                  trailing: CupertinoListTileChevron(),
+                  onTap: () {
+                    // Navigate to Blacklist Page
+                  },
+                ),
+              ],
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildToggleTile(String title, bool value, Function(bool) onChanged) {
-    return CupertinoListTile(
-      title: Text(title),
-      trailing: CupertinoSwitch(
-        value: value,
-        onChanged: onChanged,
-        thumbColor: CupertinoDynamicColor.withBrightness(
-          color: CupertinoColors.white, // Default color
-          darkColor: CupertinoColors.systemGrey6, // Dark mode adaptation
-        ),
-      ),
-    );
-  }
-
-
-
-  Widget _buildNavigationTile(String title, VoidCallback onTap) {
-    return CupertinoListTile(
-      title: Text(title),
-      trailing: Icon(CupertinoIcons.right_chevron, color: CupertinoColors.systemGrey),
-      onTap: onTap,
     );
   }
 }
