@@ -1,25 +1,33 @@
 workflows:
   android-release:
     name: Android Release Build
-    max_build_duration: 60
-    instance_type: mac_mini_m1
     environment:
       flutter: stable
       groups:
-        - google_credentials # Ensure this is properly set in Codemagic
+        - google_credentials
       vars:
-        PACKAGE_NAME: "com.example.members_lists" # Replace with your actual package name
+        PACKAGE_NAME: "com.example.members_lists"  # Replace with your actual package name
+        KEYSTORE_PATH: $CM_BUILD_DIR/android/app/upload-keystore.jks
+        KEYSTORE_PASSWORD: $CM_KEYSTORE_PASSWORD
+        KEY_ALIAS: $CM_KEY_ALIAS
+        KEY_PASSWORD: $CM_KEY_PASSWORD
     scripts:
-      - name: Install dependencies
-        script: flutter pub get
-
-      - name: Build AAB
-        script: flutter build appbundle --release
-
+      - name: Set up keystore
+        script: |
+          echo $CM_KEYSTORE | base64 --decode > $KEYSTORE_PATH
+      - name: Get Flutter dependencies
+        script: |
+          flutter packages get
+      - name: Build APK
+        script: |
+          flutter build apk --release
+      - name: Build App Bundle
+        script: |
+          flutter build appbundle --release
     artifacts:
-      - build/app/outputs/bundle/release/app-release.aab
-
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/*.aab
     publishing:
       google_play:
-        credentials: $GOOGLE_CREDENTIALS # Ensure this is correctly set as an environment variable in Codemagic
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
