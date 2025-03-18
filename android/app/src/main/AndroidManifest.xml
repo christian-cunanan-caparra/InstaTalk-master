@@ -2,7 +2,7 @@
     <application
         android:label="Barena"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/capture">
         <activity
             android:name=".MainActivity"
             android:exported="true"
