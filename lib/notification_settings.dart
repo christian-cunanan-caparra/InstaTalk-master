@@ -70,7 +70,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             onTap: isNotificationEnabled ? null : () {},
           ),
           CupertinoListTile(
-            title: Text("Message Preview"),
+            title: Text("Message Previeww"),
             subtitle: Text(
               "If turned off, notification messages will not contain preview texts.",
               style: TextStyle(
