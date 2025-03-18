@@ -13,7 +13,6 @@ void main() {
   );
 }
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -25,9 +24,11 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed( Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
-        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) =>  MyApp()),
+        Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(builder: (context) => MyApp()),
         );
       }
     });
@@ -40,10 +41,7 @@ class SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("images/logo.png", width: 150, fit: BoxFit.cover)
-
-
-
+            Image.asset("images/logo.png", width: 150, fit: BoxFit.cover),
           ],
         ),
       ),
@@ -63,7 +61,6 @@ class _MyAppState extends State<MyApp> {
   final TextEditingController _password = TextEditingController();
   bool hidePassword = true;
   String error = "";
-  bool showGarenaScreen = false;
   bool isLoading = false;
 
   bool isLogin(String username, String password) {
@@ -82,19 +79,32 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      child: SafeArea(child: Center(
+      child: SafeArea(
+        child: Center(
           child: Padding(
-            padding:  EdgeInsets.all(20),
-            child: AnimatedSwitcher(
-              duration:  Duration(milliseconds: 500),
-              child: isLoading
-                  ?  CupertinoActivityIndicator(radius: 20, key: ValueKey("loading"))
-                  : Column(
-                key: ValueKey("content"),
-                children: [
-                  showGarenaScreen ? _buildGarenaScreen() : _buildLoginScreen(),
-                ],
-              ),
+            padding: EdgeInsets.all(20),
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildLoginScreen(),
+                  ],
+                ),
+
+                /// Info Icon (Top-Right Corner)
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    child: Icon(CupertinoIcons.info_circle, size: 28, color: CupertinoColors.systemGrey),
+                    onPressed: () {
+                      _showInfoDialog();
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -108,116 +118,59 @@ class _MyAppState extends State<MyApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 50),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage("images/ChristianCaparra.jpg"),
+            ),
+            SizedBox(height: 30),
 
-
-             SizedBox(height: 50),
-
-             CircleAvatar(radius: 50, backgroundImage:
-             AssetImage("images/ChristianCaparra.jpg"),
+            /// Display Default Login Credentials
+            Text(
+              "Username: admin\nPassword: 123",
+              style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 16),
+              textAlign: TextAlign.center,
             ),
 
-             SizedBox(height: 30),
-
+            SizedBox(height: 20),
             _buildInputField(_username, "Username, email or mobile number", CupertinoIcons.person, false),
-
-             SizedBox(height: 10),
-
+            SizedBox(height: 10),
             _buildInputField(_password, "Password", CupertinoIcons.padlock_solid, true),
-
-             SizedBox(height: 20),
-
+            SizedBox(height: 20),
             _buildLoginButton(),
-
-             SizedBox(height: 10),
+            SizedBox(height: 10),
 
             CupertinoButton(
               onPressed: () {},
-              child:  Text("Forgot password?", style: TextStyle(color: CupertinoColors.systemGrey)),
+              child: Text("Forgot password?", style: TextStyle(color: CupertinoColors.systemGrey)),
             ),
-            Text(error, style:  TextStyle(color: CupertinoColors.destructiveRed)),
-
-             SizedBox(height: 20),
+            Text(error, style: TextStyle(color: CupertinoColors.destructiveRed)),
+            SizedBox(height: 20),
 
             _buildFacebookLoginButton(),
+            SizedBox(height: 30),
 
-             SizedBox(height: 30),
-
-             Text("Beta", style: TextStyle(color: CupertinoColors.systemGrey)),
+            Text("Beta", style: TextStyle(color: CupertinoColors.systemGrey)),
           ],
         ),
       ),
     );
   }
 
-
-  Widget _buildGarenaScreen() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-
-         SizedBox(height: 50),
-
-         CircleAvatar(
-          radius: 50,
-          backgroundImage:
-          AssetImage("images/ChristianCaparra.jpg"),
-        ),
-
-
-         SizedBox(height: 30),
-
-         Text("Welcome to Barena", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-
-
-         SizedBox(height: 10),
-
-
-         Center(
-          child: Text("Do you want to link to an existing Barena account?", textAlign: TextAlign.center,
-          ),
-        ),
-
-         SizedBox(height: 20),
-
-        _buildFullWidthButton("Yes", CupertinoColors.systemRed, () {}),
-
-         SizedBox(height: 10),
-
-        _buildFullWidthButton("No, sign up a new Barena account", CupertinoColors.systemGrey, () {}),
-
-         SizedBox(height: 20),
-
-
-        CupertinoButton(
-          onPressed: () {
-            setState(() {
-              showGarenaScreen = false;
-            });
-          },
-
-          child:  Text("Back to Log In", style: TextStyle(color: CupertinoColors.systemGrey2),
-          ),
-        ),
-      ],
-    );
-  }
-
-
   Widget _buildInputField(TextEditingController controller, String placeholder, IconData icon, bool isPassword) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: CupertinoTextField(
         controller: controller,
         placeholder: placeholder,
         obscureText: isPassword ? hidePassword : false,
-        padding:  EdgeInsets.all(14),
+        padding: EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: CupertinoColors.systemGrey.withOpacity(0.2),
           borderRadius: BorderRadius.circular(8),
         ),
         prefix: Padding(
-          padding:  EdgeInsets.only(left: 8),
+          padding: EdgeInsets.only(left: 8),
           child: Icon(icon, color: CupertinoColors.systemGrey),
         ),
         suffix: isPassword
@@ -228,7 +181,10 @@ class _MyAppState extends State<MyApp> {
               hidePassword = !hidePassword;
             });
           },
-          child: Icon(hidePassword ? CupertinoIcons.eye : CupertinoIcons.eye_slash, size: 20, color: CupertinoColors.systemGrey,
+          child: Icon(
+            hidePassword ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
+            size: 20,
+            color: CupertinoColors.systemGrey,
           ),
         )
             : null,
@@ -246,7 +202,9 @@ class _MyAppState extends State<MyApp> {
       }
 
       if (isLogin(_username.text, _password.text)) {
-        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => const Homepage()),
+        Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(builder: (context) => const Homepage()),
         );
       } else {
         setState(() {
@@ -256,21 +214,21 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-
   Widget _buildFacebookLoginButton() {
-    return
-      _buildFullWidthButton("Sign in with Facebook", CupertinoColors.systemBlue,
-      isLoading ? null : () {
+    return _buildFullWidthButton(
+      "Sign in with Facebook",
+      CupertinoColors.systemBlue,
+      isLoading
+          ? null
+          : () {
         setState(() {
-          showGarenaScreen = false;
           isLoading = true;
         });
 
-        Future.delayed(const Duration(seconds: 3), () {
+        Future.delayed(Duration(seconds: 3), () {
           if (mounted) {
             setState(() {
               isLoading = false;
-              showGarenaScreen = true;
             });
           }
         });
@@ -280,7 +238,7 @@ class _MyAppState extends State<MyApp> {
 
   Widget _buildFullWidthButton(String text, Color borderColor, VoidCallback? onPressed) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -288,7 +246,7 @@ class _MyAppState extends State<MyApp> {
           borderRadius: BorderRadius.circular(35),
         ),
         child: CupertinoButton(
-          padding:  EdgeInsets.symmetric(vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 15),
           onPressed: onPressed,
           disabledColor: CupertinoColors.systemGrey3,
           child: Text(text, style: TextStyle(color: borderColor, fontSize: 18)),
@@ -296,32 +254,34 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
+  /// Info Dialog - Educational Purpose & Copyright
+  void _showInfoDialog() {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        title: Text("Educational Purpose Only"),
+        content: Column(
+          children: [
+            Text(
+              "This application is for educational purposes only. It does not intend to infringe on any copyrights.",
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10),
+            Text(
+              "⚠ Copyrights by:\n• PlayStore\n• Garena\n• League of Legends\n• Call of Duty\n• Free Fire\n• Point Blank\n• PUBG\n• Fortnite\n• Clash Royale\n• Minecraft\n• Among Us\n• Roblox",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actions: [
+          CupertinoDialogAction(
+            child: Text("OK"),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
