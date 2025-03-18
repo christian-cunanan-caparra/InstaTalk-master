@@ -1500,7 +1500,7 @@ class _HomepageState extends State<Homepage> {
                             title: Text("Installation Done"),
                             content: Padding(
                               padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Text("League of Legends is installed."),
+                              child: Text("Call of Duty is installed."),
                             ),
                             actions: [
                               CupertinoDialogAction(
@@ -1585,7 +1585,7 @@ class _HomepageState extends State<Homepage> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Text(
-                            "Call Of Duty: Mobile (CODM) features tons of game modes for a free-to-play (F2P) game. To compare, an average F2P game has about 5 game modes and their equivalent ranked mode(s).",
+                            "Call Of Duty: Mobile (CODM) features tons of game modes for a free-to-play (F2P) game.",
                             style: TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ),
@@ -1794,7 +1794,7 @@ class _HomepageState extends State<Homepage> {
                             title: Text("Installation Done"),
                             content: Padding(
                               padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Text("League of Legends is installed."),
+                              child: Text("Free Fire is installed."),
                             ),
                             actions: [
                               CupertinoDialogAction(
@@ -1845,7 +1845,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
                 middle: Text(
-                  "League of Legends",
+                  "Free Fire",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: CupertinoColors.black,
@@ -1863,7 +1863,7 @@ class _HomepageState extends State<Homepage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          "images/legends.jpg",
+                          "images/Freefire.jpg",
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.35,
                           fit: BoxFit.cover,
@@ -1872,14 +1872,14 @@ class _HomepageState extends State<Homepage> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Text(
-                            "League of Legends",
+                            "Free Fire",
                             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Text(
-                            "5v5 MOBA Action! Team up with friends, select a champion, & dive into the Rift.",
+                            "Free Fire is a free-to-play battle royale game developed and published by Garena for Android and iOS.",
                             style: TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ),
@@ -1889,9 +1889,9 @@ class _HomepageState extends State<Homepage> {
                           child: Wrap(
                             spacing: 8.0,
                             children: [
-                              tagButton("MOBA"),
+                              tagButton("Free to Play"),
                               tagButton("Battling"),
-                              tagButton("Fantasy"),
+                              tagButton("Battle Royal"),
                               tagButton("Stylized"),
                             ],
                           ),
@@ -1916,28 +1916,28 @@ class _HomepageState extends State<Homepage> {
                             padding: EdgeInsets.symmetric(horizontal: 16.0),
                             children: [
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/free1.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/free2.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/free3.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/free4.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
@@ -2083,7 +2083,7 @@ class _HomepageState extends State<Homepage> {
                             title: Text("Installation Done"),
                             content: Padding(
                               padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Text("League of Legends is installed."),
+                              child: Text("Point Blank is installed."),
                             ),
                             actions: [
                               CupertinoDialogAction(
@@ -2134,7 +2134,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
                 middle: Text(
-                  "League of Legends",
+                  "Point Blank",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: CupertinoColors.black,
@@ -2152,7 +2152,7 @@ class _HomepageState extends State<Homepage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          "images/legends.jpg",
+                          "images/pb.jpg",
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.35,
                           fit: BoxFit.cover,
@@ -2161,14 +2161,14 @@ class _HomepageState extends State<Homepage> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Text(
-                            "League of Legends",
+                            "Point Blank",
                             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Text(
-                            "5v5 MOBA Action! Team up with friends, select a champion, & dive into the Rift.",
+                            "Point Blank is a first-person shooter video game developed by the South Korean company Zepetto for Microsoft Windows.",
                             style: TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ),
@@ -2178,10 +2178,10 @@ class _HomepageState extends State<Homepage> {
                           child: Wrap(
                             spacing: 8.0,
                             children: [
-                              tagButton("MOBA"),
-                              tagButton("Battling"),
-                              tagButton("Fantasy"),
-                              tagButton("Stylized"),
+                              tagButton("Epic Battle"),
+                              tagButton("Action Packed"),
+                              tagButton("Multiplayer"),
+                              tagButton("Competitive"),
                             ],
                           ),
                         ),
@@ -2205,28 +2205,28 @@ class _HomepageState extends State<Homepage> {
                             padding: EdgeInsets.symmetric(horizontal: 16.0),
                             children: [
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/pb1.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/pb3.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/pb4.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/legends.jpg",
+                                "images/pb.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,
