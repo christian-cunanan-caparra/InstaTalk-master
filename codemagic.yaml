@@ -7,17 +7,17 @@ workflows:
         - google_credentials
       vars:
         PACKAGE_NAME: "com.example.members_lists"  # Replace with your actual package name
-        KEYSTORE_PATH: "$CM_BUILD_DIR/keystore.jks"
+        KEYSTORE_PATH: $CM_BUILD_DIR/android/app/upload-keystore.jks
         KEYSTORE_PASSWORD: $CM_KEYSTORE_PASSWORD
         KEY_ALIAS: $CM_KEY_ALIAS
-        KEY_PASSWORD: $CM_KEY_PASSWORD  # Use an environment variable instead of hardcoding
+        KEY_PASSWORD: $CM_KEY_PASSWORD
     scripts:
-      - name: Decode Keystore File
+      - name: Set up keystore
         script: |
-          echo "$CM_KEYSTORE" | base64 --decode > $KEYSTORE_PATH
+          echo $CM_KEYSTORE | base64 --decode > $KEYSTORE_PATH
       - name: Get Flutter dependencies
         script: |
-          flutter pub get
+          flutter packages get
       - name: Build APK
         script: |
           flutter build apk --release
