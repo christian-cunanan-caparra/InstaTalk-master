@@ -25,6 +25,14 @@ workflows:
             --dart-define=KEYSTORE_PASSWORD=$CM_KEYSTORE_PASSWORD \
             --dart-define=KEY_PASSWORD=$CM_KEY_PASSWORD
 
+      - name: Build Signed AAB
+        script: |
+          flutter build appbundle --release \
+            --dart-define=KEYSTORE_PATH=/tmp/keystore.jks \
+            --dart-define=KEYSTORE_ALIAS=$CM_KEY_ALIAS \
+            --dart-define=KEYSTORE_PASSWORD=$CM_KEYSTORE_PASSWORD \
+            --dart-define=KEY_PASSWORD=$CM_KEY_PASSWORD
+
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
