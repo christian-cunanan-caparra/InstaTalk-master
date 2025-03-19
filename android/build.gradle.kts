@@ -21,23 +21,21 @@ tasks.register<Delete>("clean") {
 }
 
 android {
-    ...
+   
     signingConfigs {
         release {
-            def keystorePropertiesFile = rootProject.file("key.properties")
-            def keystoreProperties = new Properties()
-            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
-            storeFile file(keystoreProperties["storeFile"])
-            storePassword keystoreProperties["storePassword"]
-            keyAlias keystoreProperties["keyAlias"]
-            keyPassword keystoreProperties["keyPassword"]
+            storeFile file(properties['storeFile'])
+            storePassword properties['storePassword']
+            keyAlias properties['keyAlias']
+            keyPassword properties['keyPassword']
         }
     }
 
     buildTypes {
         release {
             signingConfig signingConfigs.release
+                    minifyEnabled false
+            shrinkResources false
         }
     }
 }
