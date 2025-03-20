@@ -1,50 +1,74 @@
+import java.util.Properties
+import java.io.File
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-android {
-    namespace = "com.example.members_lists"
-    compileSdk 34 // Use actual SDK version
+// Load Flutter SDK Versions
+val localProperties = Properties().apply {
+    load(File(rootProject.rootDir, "local.properties").inputStream())
+}
+val flutterSdkPath: String = localProperties["flutter.sdk"] as? String
+    ?: error("Flutter SDK path not found in local.properties")
 
-    ndkVersion "27.0.12077973"
+android {
+    namespace = "com.example.barena"
+    compileSdk = 34
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-                targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     defaultConfig {
-        applicationId "com.example.members_lists"
-        minSdk 21  // Set this according to your app's needs
-        targetSdk 34
-        versionCode 1
-        versionName "1.0.0"
+        applicationId = "com.example.barena"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    // Load signing properties safely
+    val keyPropertiesFile = File(rootProject.rootDir, "key.properties")
+    val keyProperties = Properties()
+    if (keyPropertiesFile.exists()) {
+        keyProperties.load(keyPropertiesFile.inputStream())
     }
 
     signingConfigs {
-        release {
-            storeFile file("app/keystore.jks") // Correct path
-            storePassword System.getenv("CM_KEYSTORE_PASSWORD") ?: "123456789"
-            keyAlias System.getenv("CM_KEY_ALIAS") ?: "my-key"
-            keyPassword System.getenv("CM_KEY_PASSWORD") ?: "123456789"
+        create("release") {
+            storeFile = keyProperties["storeFile"]?.let { File(it as String) }
+            storePassword = keyProperties["storePassword"] as? String
+            keyAlias = keyProperties["keyAlias"] as? String
+            keyPassword = keyProperties["keyPassword"] as? String
         }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
-                    minifyEnabled false
-            shrinkResources false
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
 
 flutter {
-    source "../.."
+    source = "../.."
+}
+
+dependencies {
+    dependencies {
+        implementation("androidx.appcompat:appcompat:1.6.1")
+        implementation("com.google.android.material:material:1.10.0")
+    }
+
 }

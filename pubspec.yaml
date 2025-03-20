@@ -28,8 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
   flutter:
     sdk: flutter
+
 
 
 
@@ -47,10 +49,10 @@ dev_dependencies:
 
   flutter_launcher_icons: ^0.13.1
 
+
 flutter_icons:
   android: true
-  ios: true
-  image_path: "icons/Capture.PNG"
+  image_path: "icons/ic_launcher.png"
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
