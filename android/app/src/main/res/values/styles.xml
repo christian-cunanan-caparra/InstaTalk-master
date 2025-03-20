@@ -6,4 +6,20 @@
     <style name="NormalTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+
+
+
+
+        <!-- Splash Screen Theme -->
+        <style name="LaunchTheme" parent="Theme.SplashScreen">
+            <item name="windowSplashScreenBackground">@android:color/white</item>
+        </style>
+
+        <!-- Main App Theme -->
+        <style name="NormalTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+            <item name="android:windowBackground">@android:color/white</item>
+        </style>
+
+
+
 </resources>

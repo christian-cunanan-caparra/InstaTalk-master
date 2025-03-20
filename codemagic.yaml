@@ -19,7 +19,8 @@ workflows:
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_PASSWORD
           keyAlias=$CM_KEY_ALIAS
-          storeFile=keystore.jks
+#          storeFile=keystore.jks
+          storeFile=android/app/keystore.jks
           EOF
 
       - name: Get Flutter dependencies
@@ -31,8 +32,9 @@ workflows:
           flutter build appbundle --release
 
     artifacts:
-      - build/**/outputs/**/*.aab
 
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/*.apk
     publishing:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
