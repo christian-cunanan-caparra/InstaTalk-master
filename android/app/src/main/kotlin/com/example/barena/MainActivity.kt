@@ -1,4 +1,4 @@
-package com.example.barena
+package com.barena.app
 
 import io.flutter.embedding.android.FlutterActivity
 

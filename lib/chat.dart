@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:members_lists/settings.dart';
+import 'package:barena/settings.dart';
 import 'fb.dart';
 
 class Chat extends StatelessWidget {
@@ -81,6 +81,40 @@ class Chat extends StatelessWidget {
                           Text("Samuel Miranda"),
                         ],
                       ),
+
+                      SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          ClipOval(
+                            child:
+                            Image.asset("images/Jhuniel.jpg", height: 40, width: 40,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text("Jhuniel Galang"),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          ClipOval(
+                            child:
+                            Image.asset("images/mike.jpg", height: 40, width: 40,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text("Michael Deramos"),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+
+
+
+
                     ],
                   ),
                   actions: <Widget>[

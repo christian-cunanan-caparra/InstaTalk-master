@@ -1,7 +1,7 @@
-com.example.barena-pngs-0 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\generated\res\pngs\release
-com.example.barena-resValues-1 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\generated\res\resValues\release
-com.example.barena-packageReleaseResources-2 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\intermediates\incremental\release\packageReleaseResources\merged.dir
-com.example.barena-packageReleaseResources-3 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
-com.example.barena-release-4 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\intermediates\merged_res\release\mergeReleaseResources
-com.example.barena-main-5 C:\Users\christian\StudioProjects\InstaTalk-master\android\src\main\res
-com.example.barena-release-6 C:\Users\christian\StudioProjects\InstaTalk-master\android\src\release\res
+com.barena.app-pngs-0 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\generated\res\pngs\release
+com.barena.app-resValues-1 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\generated\res\resValues\release
+com.barena.app-packageReleaseResources-2 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.barena.app-packageReleaseResources-3 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.barena.app-release-4 C:\Users\christian\StudioProjects\InstaTalk-master\android\build\intermediates\merged_res\release\mergeReleaseResources
+com.barena.app-main-5 C:\Users\christian\StudioProjects\InstaTalk-master\android\src\main\res
+com.barena.app-release-6 C:\Users\christian\StudioProjects\InstaTalk-master\android\src\release\res

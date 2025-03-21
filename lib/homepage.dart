@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:members_lists/chat.dart';
-import 'package:members_lists/notifications_page.dart';
+import 'package:barena/chat.dart';
+import 'package:barena/notifications_page.dart';
 import 'package:flutter/services.dart';
 
 class Homepage extends StatefulWidget {
@@ -124,7 +124,7 @@ class _HomepageState extends State<Homepage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child:
-                      Image.asset("images/FreeFire.jpg", width: 300, height: 200,
+                      Image.asset("images/free4.jpg", width: 300, height: 200,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -244,7 +244,7 @@ class _HomepageState extends State<Homepage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child:
-                              Image.asset("images/FreeFire.jpg", width: 150, height: 120,
+                              Image.asset("images/free2.jpg", width: 150, height: 120,
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return  Center(
@@ -839,7 +839,7 @@ class _HomepageState extends State<Homepage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                Image.asset("images/FreeFire.jpg", width: double.infinity, height: MediaQuery.of(context).size.height * 0.35,
+                Image.asset("images/free2.jpg", width: double.infinity, height: MediaQuery.of(context).size.height * 0.35,
                   fit: BoxFit.cover,
                 ),
 
@@ -904,7 +904,7 @@ class _HomepageState extends State<Homepage> {
                     scrollDirection: Axis.horizontal,
                     padding:  EdgeInsets.symmetric(horizontal: 16.0),
                     children: [
-                      Image.asset("images/FreeFire.jpg", width: 180, height: 100,
+                      Image.asset("images/free2.jpg", width: 180, height: 100,
                         fit: BoxFit.cover,
                       ),
 
@@ -912,7 +912,7 @@ class _HomepageState extends State<Homepage> {
                       SizedBox(width: 10),
 
 
-                      Image.asset("images/FreeFire.jpg", width: 180, height: 100,
+                      Image.asset("images/free2.jpg", width: 180, height: 100,
                         fit: BoxFit.cover,
                       ),
 
@@ -920,7 +920,7 @@ class _HomepageState extends State<Homepage> {
                        SizedBox(width: 10),
 
 
-                      Image.asset("images/FreeFire.jpg", width: 180, height: 100,
+                      Image.asset("images/free2.jpg", width: 180, height: 100,
                         fit: BoxFit.cover,
                       ),
 
@@ -928,7 +928,7 @@ class _HomepageState extends State<Homepage> {
 
                        SizedBox(width: 10),
 
-                      Image.asset("images/FreeFire.jpg", width: 180, height: 100,
+                      Image.asset("images/free2.jpg", width: 180, height: 100,
                         fit: BoxFit.cover,
                       ),
                     ],
@@ -1868,7 +1868,7 @@ class _HomepageState extends State<Homepage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          "images/Freefire.jpg",
+                          "images/free2.jpg",
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.35,
                           fit: BoxFit.cover,
@@ -1935,7 +1935,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                               SizedBox(width: 10),
                               Image.asset(
-                                "images/free3.jpg",
+                                "images/free2.jpg",
                                 width: 180,
                                 height: 100,
                                 fit: BoxFit.cover,

@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "com.example.barena",
+  "applicationId": "com.barena.app",
   "variantName": "release",
   "elements": []
 }

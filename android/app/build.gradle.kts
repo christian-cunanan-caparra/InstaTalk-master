@@ -1,5 +1,6 @@
 import java.util.Properties
 import java.io.File
+import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
@@ -7,15 +8,8 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Load Flutter SDK Versions
-val localProperties = Properties().apply {
-    load(File(rootProject.rootDir, "local.properties").inputStream())
-}
-val flutterSdkPath: String = localProperties["flutter.sdk"] as? String
-    ?: error("Flutter SDK path not found in local.properties")
-
 android {
-    namespace = "com.example.barena"
+    namespace = "com.barena.app"
     compileSdk = 34
     ndkVersion = "27.0.12077973"
 
@@ -29,34 +23,34 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.barena"
+        applicationId = "com.barena.app"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-    }
-
-    // Load signing properties safely
-    val keyPropertiesFile = File(rootProject.rootDir, "key.properties")
-    val keyProperties = Properties()
-    if (keyPropertiesFile.exists()) {
-        keyProperties.load(keyPropertiesFile.inputStream())
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     signingConfigs {
         create("release") {
-            storeFile = keyProperties["storeFile"]?.let { File(it as String) }
-            storePassword = keyProperties["storePassword"] as? String
-            keyAlias = keyProperties["keyAlias"] as? String
-            keyPassword = keyProperties["keyPassword"] as? String
+            val keystorePropertiesFile = rootProject.file("key.properties")
+            if (keystorePropertiesFile.exists()) {
+                val keystoreProperties = Properties().apply {
+                    load(FileInputStream(keystorePropertiesFile))
+                }
+
+                storeFile = file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+            } else {
+                println("WARNING: key.properties file not found, release signing will fail.")
+            }
         }
     }
 
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = false
-            isShrinkResources = false
         }
     }
 }
@@ -66,9 +60,5 @@ flutter {
 }
 
 dependencies {
-    dependencies {
-        implementation("androidx.appcompat:appcompat:1.6.1")
-        implementation("com.google.android.material:material:1.10.0")
-    }
-
+    implementation("com.google.android.material:material:1.9.0")
 }
