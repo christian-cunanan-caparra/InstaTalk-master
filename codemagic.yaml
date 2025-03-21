@@ -19,8 +19,7 @@ workflows:
           storePassword=$CM_KEYSTORE_PASSWORD
           keyPassword=$CM_KEY_PASSWORD
           keyAlias=$CM_KEY_ALIAS
-#          storeFile=keystore.jks
-          storeFile=android/app/keystore.jks
+          storeFile=keystore.jks
           EOF
 
       - name: Get Flutter dependencies
