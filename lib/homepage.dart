@@ -24,56 +24,61 @@ class _HomepageState extends State<Homepage> {
              SizedBox(height: 10),
 
 
-            SafeArea(child: CupertinoNavigationBar(
-                backgroundColor: CupertinoColors.white,
-                border:  Border(
-                  bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
-                ),
-                leading:  Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: Text("BARENA", style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.black,
-                    ),
+            SafeArea(child:CupertinoNavigationBar(
+              backgroundColor: CupertinoColors.white,
+              border: Border(
+                bottom: BorderSide(color: CupertinoColors.systemGrey5, width: 0.5),
+              ),
+              leading: GestureDetector(
+                onTap: () {
+                  // Optional: Add functionality if needed (e.g., navigate home)
+                },
+                child: Text(
+                  "BARENA",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    letterSpacing: 1.2,
+                    color: CupertinoColors.black,
                   ),
                 ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      color: Colors.transparent,
-                      child: CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        child:  Icon(CupertinoIcons.bell, size: 25, color: CupertinoColors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.push(context, CupertinoPageRoute(builder: (context) =>  NotificationsPage()),
-                          );
-                        },
-                      ),
-                    ),
-                     SizedBox(width: 10),
-                    Container(
-                      color: Colors.transparent,
-
-                    ),
-
-                    SizedBox(width: 10),
-
-
-                    Container(
-                      color: Colors.transparent, // Prevents white background on tap
-                      child: CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        child:  Icon(CupertinoIcons.person, size: 25, color: CupertinoColors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.push(context, CupertinoPageRoute(builder: (context) =>  Chat()),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
               ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    child: Icon(
+                      CupertinoIcons.bell,
+                      size: 26,
+                      color: CupertinoColors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => NotificationsPage()),
+                      );
+                    },
+                  ),
+                  SizedBox(width: 12), // Better spacing
+                  CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    child: Icon(
+                      CupertinoIcons.person,
+                      size: 26,
+                      color: CupertinoColors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => Chat()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+
             ),
 
 
@@ -120,7 +125,7 @@ class _HomepageState extends State<Homepage> {
 
                    SizedBox(width: 12),
                   GestureDetector(
-                    onTap: () => _showFreeFireModal(context),
+                    onTap: () => _showCODModal(context),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child:
@@ -173,7 +178,7 @@ class _HomepageState extends State<Homepage> {
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: () => showLeagueOfLegendsModal(context),
+                          onTap: () => _showLoLModal(context),
                           child: Container(
                             width: 150,
                             height: 120,
@@ -202,7 +207,7 @@ class _HomepageState extends State<Homepage> {
 
 
                         GestureDetector(
-                          onTap: () => showCODMModal(context),
+                          onTap: () => _showCODModal(context),
                           child: Container(
                             width: 150,
                             height: 120,
@@ -233,7 +238,7 @@ class _HomepageState extends State<Homepage> {
 
 
                         GestureDetector(
-                          onTap: () => showFreeFireModal(context),
+                          onTap: () => _showFreeFireModal(context),
                           child: Container(
                             width: 150,
                             height: 120,
@@ -264,7 +269,7 @@ class _HomepageState extends State<Homepage> {
 
 
                         GestureDetector(
-                          onTap: () => showPointBlankModal(context),
+                          onTap: () => _showPBModal(context),
                           child: Container(
                             width: 150,
                             height: 120,
@@ -1141,7 +1146,7 @@ class _HomepageState extends State<Homepage> {
 
 
 
- //modal banner
+ //modal bannerr
   //aayusin kopaand lilinisan
 
   //lol

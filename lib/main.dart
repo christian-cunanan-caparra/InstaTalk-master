@@ -121,7 +121,7 @@ class _MyAppState extends State<MyApp> {
             SizedBox(height: 50),
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage("images/ChristianCaparra.jpg"),
+              backgroundImage: AssetImage("images/user.jpg"),
             ),
             SizedBox(height: 30),
 

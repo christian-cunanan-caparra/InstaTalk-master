@@ -88,7 +88,7 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
                         opacity: showFacebook ? _animation.value : 1 - _animation.value,
                         child: const CircleAvatar(
                           radius: 40,
-                          backgroundImage: AssetImage("images/ChristianCaparra.jpg"),
+                          backgroundImage: AssetImage("images/user.jpg"),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -99,7 +99,7 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
                         opacity: showFacebook ? 1 - _animation.value : _animation.value,
                         child: const CircleAvatar(
                           radius: 40,
-                          backgroundImage: AssetImage("images/legends.jpg"),
+                          backgroundImage: AssetImage("images/Capture.PNG"),
                         ),
                       ),
                     ],

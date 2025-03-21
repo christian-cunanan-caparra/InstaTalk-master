@@ -34,7 +34,7 @@ class Chat extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return CupertinoAlertDialog(
-                  title:  Text("Members"),
+                  title:  Text("Team Members"),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -140,7 +140,7 @@ class Chat extends StatelessWidget {
                   children: [
                     ClipOval(
                       child:
-                      Image.asset("images/ChristianCaparra.jpg", height: 50, width: 50,
+                      Image.asset("images/user.jpg", height: 50, width: 50,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -191,6 +191,12 @@ class Chat extends StatelessWidget {
               // Menu Items
               CupertinoListSection.insetGrouped(
                 children: [
+
+
+
+
+
+
                   CupertinoListTile(
                     leading: Icon(Icons.facebook, color: Colors.blue),
                     title: Text("Facebook"),
