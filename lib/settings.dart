@@ -130,9 +130,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               isDestructiveAction: true,
                               child: Text("Log Out"),
                               onPressed: () {
-                                Navigator.pushReplacementNamed(context, '/');
+                                Navigator.of(context, rootNavigator: true).pop(); // Close dialog first
+                                Navigator.pushReplacementNamed(context, '/'); // Then navigate
                               },
                             ),
+
                           ],
                         );
                       },

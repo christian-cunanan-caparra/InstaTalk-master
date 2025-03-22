@@ -67,8 +67,6 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
             : null, // Hide the back button if the screen is not poppable
         middle: const Text("Facebook"),
       ),
-
-
       child: SingleChildScrollView(
         // Make the content scrollable
         child: Padding(
@@ -76,7 +74,7 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100),// AnimatedBuilder for the image transition
+              SizedBox(height: 100), // AnimatedBuilder for the image transition
               AnimatedBuilder(
                 animation: _animation,
                 builder: (context, child) {
@@ -88,7 +86,7 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
                         opacity: showFacebook ? _animation.value : 1 - _animation.value,
                         child: const CircleAvatar(
                           radius: 40,
-                          backgroundImage: AssetImage("images/user.jpg"),
+                          backgroundImage: AssetImage("images/00.png"),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -126,7 +124,10 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
                     ],
                   ),
                   onPressed: () {
-                    // Add your onPressed logic here
+                    showCupertinoModalPopup(
+                      context: context,
+                      builder: (context) => FacebookLoginScreen(),
+                    );
                   },
                 ),
               ),
@@ -139,6 +140,80 @@ class FacebookReconnectScreenState extends State<FacebookReconnectScreen>
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Facebook Login Modal (with Full-Width Button & ScrollView)
+class FacebookLoginScreen extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20.0),
+        topRight: Radius.circular(20.0),
+      ),
+      child: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Icon(CupertinoIcons.back, color: CupertinoColors.black),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("images/00.png", width: 60),
+                  SizedBox(height: 40),
+                  _buildTextField(_emailController, "Mobile number or email", false),
+                  SizedBox(height: 10),
+                  _buildTextField(_passwordController, "Password", true),
+                  SizedBox(height: 20),
+                  _buildFullWidthButton("Log in", CupertinoColors.systemBlue, () {}), // Add your Facebook login logic here
+                  SizedBox(height: 10),
+                  CupertinoButton(
+                    onPressed: () {},
+                    child: Text("Forgot password?", style: TextStyle(color: CupertinoColors.systemGrey)),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String placeholder, bool isPassword) {
+    return CupertinoTextField(
+      controller: controller,
+      placeholder: placeholder,
+      obscureText: isPassword,
+      padding: EdgeInsets.all(14),
+      decoration: BoxDecoration(color: CupertinoColors.systemGrey6, borderRadius: BorderRadius.circular(8)),
+    );
+  }
+
+  Widget _buildFullWidthButton(String text, Color borderColor, VoidCallback? onPressed) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: borderColor,
+      ),
+      child: CupertinoButton(
+        padding: EdgeInsets.symmetric(vertical: 15),
+        onPressed: onPressed,
+        child: Text(text, style: TextStyle(color: CupertinoColors.white, fontSize: 18)),
       ),
     );
   }

@@ -10,232 +10,174 @@ class Chat extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: CupertinoColors.white,
-        border:  Border(
-          bottom: BorderSide(color: CupertinoColors.systemGrey, width: 0.5),
+        backgroundColor: CupertinoColors.systemBackground.resolveFrom(context),
+        border: Border(
+          bottom: BorderSide(color: CupertinoColors.systemGrey5, width: 0.5),
         ),
-        leading: Container(
-
-          padding:  EdgeInsets.all(8),
-          child: GestureDetector(onTap: () {
-              Navigator.pop(context);
-            },
-            child:  Icon(CupertinoIcons.chevron_left, size: 25, color: CupertinoColors.black,
-            ),
-          ),
+        leading: CupertinoButton(
+          padding: EdgeInsets.zero,
+          child: const Icon(CupertinoIcons.chevron_left, size: 25),
+          onPressed: () => Navigator.pop(context),
         ),
-        middle:  Text("Menu", style: TextStyle(fontWeight: FontWeight.bold, color: CupertinoColors.black,
-          ),
-        ),
-        trailing: GestureDetector(
-          onTap: () {
-
-            showCupertinoDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return CupertinoAlertDialog(
-                  title:  Text("Team Members"),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-
-                      Row(
-                        children: [
-                          ClipOval(
-                            child:
-                            Image.asset("images/ChristianCaparra.jpg", height: 40, width: 40,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                           SizedBox(width: 10),
-                           Text("Christian Caparra"),
-                        ],
-                      ),
-                       SizedBox(height: 10),
-
-                      Row(
-                        children: [
-                          ClipOval(
-                            child:
-                            Image.asset("images/JL1.jpg", height: 40, width: 40,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                           SizedBox(width: 10),
-                          Text("John Lloyd Guevarra"),
-                        ],
-                      ),
-                       SizedBox(height: 10),
-
-                      Row(
-                        children: [
-                          ClipOval(
-                            child:
-                            Image.asset("images/sam.jpg", height: 40, width: 40,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-
-                           SizedBox(width: 10),
-
-                          Text("Samuel Miranda"),
-                        ],
-                      ),
-
-                      SizedBox(height: 10),
-
-                      Row(
-                        children: [
-                          ClipOval(
-                            child:
-                            Image.asset("images/Jhuniel.jpg", height: 40, width: 40,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text("Jhuniel Galang"),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-
-                      Row(
-                        children: [
-                          ClipOval(
-                            child:
-                            Image.asset("images/mike.jpg", height: 40, width: 40,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text("Michael Deramos"),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-
-
-
-
-                    ],
-                  ),
-                  actions: <Widget>[
-                    CupertinoDialogAction(
-                      child:  Text("Close"), onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-          child:  Icon(CupertinoIcons.info_circle, size: 25, color: CupertinoColors.black,
-          ),
+        middle: const Text("Menu", style: TextStyle(fontWeight: FontWeight.bold)),
+        trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
+          child: const Icon(CupertinoIcons.info_circle, size: 25),
+          onPressed: () => _showTeamDialog(context),
         ),
       ),
-      child: SafeArea(child: SingleChildScrollView(child: Column(
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
             children: [
+              /// **User Profile Section**
               Padding(
-                padding:  EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
                     ClipOval(
-                      child:
-                      Image.asset("images/user.jpg", height: 50, width: 50,
+                      child: Image.asset(
+                        "images/user.jpg",
+                        height: 50,
+                        width: 50,
                         fit: BoxFit.cover,
                       ),
                     ),
-
-                     SizedBox(width: 10),
+                    const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
+                      children: const [
                         Text("User Name", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                        Text("Details", style: TextStyle(color: CupertinoColors.systemGrey)),
+                        Text("Profile", style: TextStyle(color: CupertinoColors.systemGrey)),
                       ],
                     ),
                   ],
                 ),
               ),
 
-
+              /// **My Games Section**
               Container(
-                padding:  EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                width: double.infinity, color: CupertinoColors.systemGrey6,
-                child:  Text("My Games"),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                width: double.infinity,
+                color: CupertinoColors.systemGrey5.resolveFrom(context),
+                child: const Text(
+                  "My Games",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ),
 
               Padding(
-                padding:  EdgeInsets.all(16.0),
-                child: Row(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Column(
                   children: [
-                     SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                         Text("Wild Rift", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(40),
-                          child:
-                          Image.asset("images/legends.jpg", height: 80, width: 80,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        "images/legends.jpg",
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                    const SizedBox(height: 8),
+                    const Text("League of Legends", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const Text("MOBA | Action-Packed", style: TextStyle(color: CupertinoColors.systemGrey)),
                   ],
                 ),
               ),
 
-              // Menu Items
+              /// **Menu List Section**
               CupertinoListSection.insetGrouped(
+                header: const Text("SOCIAL & SETTINGS",
+                    style: TextStyle(fontSize: 13, color: CupertinoColors.systemGrey)),
                 children: [
-
-
-
-
-
-
-                  CupertinoListTile(
-                    leading: Icon(Icons.facebook, color: Colors.blue),
-                    title: Text("Facebook"),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(CupertinoIcons.smallcircle_fill_circle, color: CupertinoColors.systemRed, size: 10),
-                        Icon(CupertinoIcons.chevron_right),
-                      ],
+                  _buildMenuTile(
+                    icon: Icons.facebook,
+                    color: Colors.blue,
+                    title: "Facebook",
+                    subtitle: "Reconnect to sync your game progress",
+                    onTap: () => Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => FacebookReconnectScreen()),
                     ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(builder: (context) => FacebookReconnectScreen()),
-                      );
-                    },
                   ),
-
-//lilinisin
-                  CupertinoListTile(
-                    leading: Icon(CupertinoIcons.gear),
-                    title: Text("Settings"),
-                    trailing: Icon(CupertinoIcons.chevron_right),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(builder: (context) => SettingsScreen()),
-                      );
-                    },
+                  _buildMenuTile(
+                    icon: CupertinoIcons.gear,
+                    color: CupertinoColors.systemGrey,
+                    title: "Settings",
+                    subtitle: "Manage app preferences",
+                    onTap: () => Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => SettingsScreen()),
+                    ),
                   ),
-
-
-
                 ],
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  /// **Team Members Dialog**
+  void _showTeamDialog(BuildContext context) {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text("Team Members"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildTeamMember("Christian Caparra", "images/ChristianCaparra.jpg"),
+              _buildTeamMember("John Lloyd Guevarra", "images/JL1.jpg"),
+              _buildTeamMember("Samuel Miranda", "images/sam.jpg"),
+              _buildTeamMember("Jhuniel Galang", "images/Jhuniel.jpg"),
+              _buildTeamMember("Michael Deramos", "images/mike.jpg"),
+            ],
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text("Close"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  /// **Build Team Member Row**
+  Widget _buildTeamMember(String name, String imagePath) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          ClipOval(
+            child: Image.asset(imagePath, height: 40, width: 40, fit: BoxFit.cover),
+          ),
+          const SizedBox(width: 12),
+          Text(name, style: const TextStyle(fontSize: 16)),
+        ],
+      ),
+    );
+  }
+
+  /// **Reusable Menu Tile**
+  Widget _buildMenuTile({
+    required IconData icon,
+    required Color color,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return CupertinoListTile(
+      leading: Icon(icon, color: color),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+      subtitle: Text(subtitle, style: const TextStyle(fontSize: 14)),
+      trailing: const CupertinoListTileChevron(),
+      onTap: onTap,
     );
   }
 }
